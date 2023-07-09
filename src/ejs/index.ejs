@@ -1,0 +1,27 @@
+<% 
+const baseMeta = { 
+	title:'トップページ', 
+	desc:'ディスクリプション',
+	path:'./',
+	page:'top',
+	}; 
+%>
+
+<!DOCTYPE html>
+<html lang="ja">
+<%- include(baseMeta.path + 'common/_head', { baseMeta:baseMeta } ) %>
+
+<body>
+  <!-- ヘッダー -->
+  <!-- ヘッダー -->
+  <%- include(baseMeta.path + 'common/_header', { baseMeta:baseMeta } ) %>
+
+  <div style="padding-top: 8000px;"></div>
+
+  <!-- ページトップボタン -->
+  <%- include(baseMeta.path +'parts/_c-page-top') %>
+  <!-- フッター -->
+  <%- include(baseMeta.path +'common/_footer') %>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+@use "global" as *;
+
+.p-header-menu {
+  height: inherit;
+
+  @include mq(md) {
+    position: fixed;
+    width: 100%;
+    max-width: rem(520);
+    height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+
+    transform: translateX(2000px);
+    transition: 0.4s;
+    z-index: $drawer;
+  }
+}
+
+.is-drawerActive {
+  .p-header-menu {
+    @include mq(md) {
+      background-color: #000;
+      transform: translateX(0px);
+    }
+  }
+}
+
+.p-header-menu__items {
+  display: flex;
+  height: inherit;
+  align-items: center;
+  padding: 0;
+
+  @include mq(md) {
+    height: initial;
+    display: block;
+    padding: rem(120) 0 rem(100);
+  }
+}
+
+.p-header-menu__item {
+  height: inherit;
+  color: #fff;
+}
+
+.p-header-menu__item + .p-header-menu__item {
+  margin-left: rem(30);
+
+  @include mq(md) {
+    margin-left: initial;
+  }
+}
+
+.p-header-menu__item a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 0;
+
+  @include mq(md) {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: rem(10) 0;
+    text-align: center;
+  }
+}

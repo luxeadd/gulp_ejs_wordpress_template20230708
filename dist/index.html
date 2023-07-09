@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta name="robots" content="noindex" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <!-- meta情報 -->
+  <title>トップページ</title>
+  <meta name="description" content="ディスクリプション" />
+  <meta name="keywords" content="" />
+  <!-- ogp -->
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="" />
+  <meta name="twitter:card" content="summary" />
+  <!-- ファビコン -->
+  <link rel="icon" href="#" />
+  <!-- フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- css -->
+  <link rel="stylesheet" href="./assets/css/styles.css?20230528" />
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script defer src="./assets/js/script.js?20230528"></script>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <!-- ヘッダー -->
+  <header class="l-header p-header js-header">
+    <div class="p-header__inner">
+      <!-- ヘッダーロゴ -->
+      <h1 class="p-header__logo">
+        <a href="/">
+          <img src="./assets/images/common/logo.png" alt="ロゴ">
+        </a>
+      </h1>
+      <!-- ドロワーアイコン  -->
+      <button type="button" id="js-hamburger" class="p-header__drawer c-hamburger" aria-controls="js-drawer-menu" aria-expanded="false" aria-label="メニューを開閉する">
+        <span class="c-hamburger__line"></span>
+      </button>
+      <!-- メニュー -->
+      <nav class="p-header__menu p-header-menu" id="js-drawer-menu" aria-hidden="true">
+        <ul class="p-header-menu__items">
+          <li class="p-header-menu__item js-header-menu__item"><a href="/news/">お知らせ</a></li>
+          <li class="p-header-menu__item js-header-menu__item"><a href="">事業内容</a></li>
+          <li class="p-header-menu__item js-header-menu__item"><a href="">制作実績</a></li>
+          <li class="p-header-menu__item js-header-menu__item"><a href="">企業概要</a></li>
+          <li class="p-header-menu__item js-header-menu__item"><a href="/blog/">ブログ</a></li>
+        </ul>
+      </nav>
+      <!-- ドロワーメニュー展開時背景 -->
+      <div class="p-header__overlay" id="js-header__overlay"></div>
+    </div>
+  </header>
+  <div style="padding-top: 8000px;"></div>
+  <!-- ページトップボタン -->
+  <a href="#" class="c-page-top js-page-top">
+    <span></span>
+    <span></span>
+  </a>
+  <!-- フッター -->
+  <footer class="p-footer">
+    <div class="p-footer__inner">
+      <div class="p-footer__logo"><a href=""><img src="./assets/images/common/logo.png" alt="ロゴ"></a></div>
+      <div class="p-footer__body">
+        <ul class="p-footer__items">
+          <li class="p-footer__item"><a href="">トップ</a></li>
+          <li class="p-footer__item"><a href="">お知らせ</a></li>
+          <li class="p-footer__item"><a href="">事業内容</a></li>
+          <li class="p-footer__item"><a href="">企業概要</a></li>
+          <li class="p-footer__item"><a href="">ブログ</a></li>
+          <li class="p-footer__item"><a href="">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <div class="p-footer__copy"> &copy; 2021 CodeUps Inc.</div>
+</body>
+</html>

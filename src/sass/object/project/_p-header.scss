@@ -1,0 +1,87 @@
+@use "global" as *;
+
+.p-header {
+  height: rem(50);
+  background: rgba($color: #111111, $alpha: 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: $header;
+  transition: 0.3s;
+}
+
+.p-header.change-color {
+  background: rgba($color: #111111, $alpha: 1);
+}
+
+.p-header__inner {
+  display: flex;
+  padding: 0 rem(25);
+  height: inherit;
+
+  @include mq(md) {
+    padding: 0 rem(20);
+  }
+}
+
+.p-header__logo {
+  width: rem(95.4);
+  height: inherit;
+  display: flex;
+  align-items: center;
+
+  @include mq(md) {
+    width: rem(70);
+  }
+}
+
+.p-header__logo img {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.p-header__drawer {
+  position: absolute;
+  top: rem(25);
+  transform: translateY(-50%);
+  right: rem(20);
+  z-index: $hamburger;
+}
+
+.p-header__drawer-menu {
+}
+
+.p-header__overlay {
+  position: fixed;
+  z-index: $drawer-back;
+  width: 100vw;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.is-drawerActive {
+  .p-header__overlay {
+    visibility: visible;
+    opacity: 0.8;
+    transition: 0.4s;
+  }
+}
+
+.p-header__menu {
+  margin-left: auto;
+
+  @include mq(md) {
+    margin-left: initial;
+  }
+}

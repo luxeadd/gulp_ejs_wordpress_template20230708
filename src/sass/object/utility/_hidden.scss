@@ -1,0 +1,17 @@
+@use "global" as *;
+
+//768px以上非表示
+.u-hidden-pc {
+  display: none;
+  @include mq("md") {
+    display: block;
+  }
+}
+
+//モバイル非表示
+.u-hidden-sp {
+  display: block;
+  @include mq("md") {
+    display: none;
+  }
+}

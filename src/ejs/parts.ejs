@@ -1,0 +1,32 @@
+<% 
+const baseMeta = { 
+	title:'パーツページ', 
+	desc:'ディスクリプション',
+	path:'./',
+	page:'top',
+	}; 
+%>
+
+<!DOCTYPE html>
+<html lang="ja">
+<%- include(baseMeta.path + 'common/_head', { baseMeta:baseMeta } ) %>
+
+<body>
+  <%- include(baseMeta.path + 'common/_header', { baseMeta:baseMeta } ) %>
+  <div class="l-parts">
+    <div class="l-inner">
+
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+      <div class="l-parts__sec"></div><!-- /.l-parts__sec -->
+
+    </div><!-- /.l-inner -->
+  </div><!-- /.l-parts -->
+  <%- include(baseMeta.path +'common/_footer') %>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+@use "global" as *;
+$hamburger-color1: #333; //通常時ボタンカラー
+$hamburger-color2: #fff; //展開時ボランカラー
+
+.c-hamburger {
+  display: none;
+
+  @include mq(md) {
+    display: inline-block;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.c-hamburger:hover,
+.c-hamburger:focus {
+}
+
+.c-hamburger__line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 18px;
+  height: 2px;
+  background-color: $hamburger-color1;
+  -webkit-transition: inherit;
+  transition: inherit;
+}
+
+.c-hamburger__line::before,
+.c-hamburger__line::after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  content: "";
+  -webkit-transition: inherit;
+  transition: inherit;
+}
+
+.c-hamburger__line::before {
+  top: -5px;
+}
+.c-hamburger__line::after {
+  top: 5px;
+}
+.c-hamburger[aria-expanded="true"] {
+}
+.c-hamburger[aria-expanded="true"] .c-hamburger__line {
+  background-color: transparent;
+  &::before,
+  &::after {
+    top: 0;
+    background-color: $hamburger-color2;
+  }
+}
+.c-hamburger[aria-expanded="true"] .c-hamburger__line::before {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.c-hamburger[aria-expanded="true"] .c-hamburger__line::after {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
