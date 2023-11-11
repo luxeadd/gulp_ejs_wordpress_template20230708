@@ -7,16 +7,16 @@ var drawerBackground = document.getElementById("js-header__overlay");
 var drawerMenuItems = document.querySelectorAll(".js-header-menu__item");
 var html = document.querySelector("html");
 //ドロワーメニュー展開時背景固定1
-var lockTop;
-function screenLock() {
-  lockTop = document.documentElement.scrollTop || document.body.scrollTop;
-  html.classList.add("is-screen-locked");
-  return lockTop;
-}
-function screenUnLock() {
-  html.classList.remove("is-screen-locked");
-  window.scrollTo(0, lockTop);
-}
+// let lockTop;
+// function screenLock() {
+//   lockTop = document.documentElement.scrollTop || document.body.scrollTop;
+//   html.classList.add("is-screen-locked");
+//   return lockTop;
+// }
+// function screenUnLock() {
+//   html.classList.remove("is-screen-locked");
+//   window.scrollTo(0, lockTop);
+// }
 
 //ハンバーガーメニュークリックアクション
 jsHamburger.addEventListener("click", function () {
@@ -24,11 +24,13 @@ jsHamburger.addEventListener("click", function () {
   if (this.getAttribute("aria-expanded") == "false") {
     this.setAttribute("aria-expanded", "true");
     spHeaderMenu.setAttribute("aria-hidden", "false");
-    screenLock();
+    // screenLock();
+    body.classList.add("is-screen-locked");
   } else {
     this.setAttribute("aria-expanded", "false");
     spHeaderMenu.setAttribute("aria-hidden", "true");
-    screenUnLock();
+    // screenUnLock();
+    body.classList.remove("is-screen-locked");
   }
 });
 //ドラワーメニュー展開時背景クリックアクション

@@ -12,10 +12,10 @@ $padding-sp: 20px;
 /********************************
 * フォント
 ********************************/
-$base-font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+$base-font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans", Meiryo, sans-serif;
 // $base-font-family: "Noto Serif JP", serif;
 // $sub-font-family: "Zen Maru Gothic", sans-serif;
-
 
 // フォントウェイト
 $light: 300;
@@ -25,7 +25,6 @@ $semi-bold: 600;
 $bold: 700;
 $ex-bold: 800;
 
-
 /********************************
 * カラー
 ********************************/
@@ -34,8 +33,6 @@ $base-background: #fff;
 $back: #333;
 $black: #333;
 $white: #fff;
-
-
 
 /********************************
 * z-index
@@ -47,8 +44,21 @@ $drawer-back: 101;
 $page-top: 99;
 
 body {
-  font-size: $normal;
+  font-weight: $normal;
   color: $base-color;
   background: $base-background;
   line-height: 1.5;
+  // footerを最下部に持ってくる仕様
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  // footerを最下部に持ってくる仕様
+  flex: 1;
+}
+
+/* 背景固定用CSS */
+.is-screen-locked {
+  overflow: hidden;
 }

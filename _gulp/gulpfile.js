@@ -17,8 +17,8 @@ const imageminMozjpeg = require("imagemin-mozjpeg"); // JPEGを最適化する�
 const imageminPngquant = require("imagemin-pngquant"); // PNGを最適化するためのモジュール
 const changed = require("gulp-changed"); // 変更されたファイルのみを対象にするためのモジュール
 const del = require("del"); // ファイルやディレクトリを削除するためのモジュール
-const webp = require('gulp-webp');//webp変換
-const rename = require('gulp-rename');//ファイル名変更
+const webp = require("gulp-webp"); //webp変換
+const rename = require("gulp-rename"); //ファイル名変更
 const replace = require("gulp-replace"); // 文字列や正規表現による置換
 
 // 読み込み先
@@ -47,7 +47,15 @@ const destPath = {
 // 	img: `../${themeName}/assets/images/`,
 // }
 
-const browsers = ["last 2 versions", "> 5%", "ie = 11", "not ie <= 10", "ios >= 8", "and_chr >= 5", "Android >= 5"];
+const browsers = [
+  "last 2 versions",
+  "> 5%",
+  "ie = 11",
+  "not ie <= 10",
+  "ios >= 8",
+  "and_chr >= 5",
+  "Android >= 5",
+];
 
 // HTMLファイルのコピー
 // const htmlCopy = () => {
@@ -86,11 +94,12 @@ const cssSass = () => {
       )
       // CSSプロパティをアルファベット順にソートし、未来のCSS構文を使用可能に
       .pipe(
-        postcss([cssdeclsort({
-          order: "alphabetical"
-        })]
-        ),
-        postcssPresetEnv({ browsers: 'last 2 versions' })
+        postcss([
+          cssdeclsort({
+            order: "alphabetical",
+          }),
+        ]),
+        postcssPresetEnv({ browsers: "last 2 versions" })
       )
       // メディアクエリを統合
       .pipe(mmq())
@@ -98,6 +107,8 @@ const cssSass = () => {
       .pipe(sourcemaps.write("./"))
       // コンパイル済みのCSSファイルを出力先に保存
       .pipe(dest(destPath.css))
+      // WordPress用
+      // .pipe(dest(destWpPath.css))
       // Sassコンパイルが完了したことを通知
       .pipe(
         notify({
@@ -139,10 +150,19 @@ const imgImagemin = () => {
           }
         )
       )
+      // 以下HTML用（WordPressの場合にはコメントアウト）
       .pipe(dest(destPath.img))
-      .pipe(webp())//webpに変換
+      //webpに変換
+      .pipe(webp())
       // 圧縮済みの画像ファイルを出力先に保存
       .pipe(dest(destPath.img))
+    // 以下WordPress用
+    // .pipe(dest(destPath.img))
+    // .pipe(dest(destWpPath.img))
+    //webpに変換
+    // .pipe(webp())
+    // 圧縮済みの画像ファイルを出力先に保存
+    // .pipe(dest(destWpPath.img))
   );
 };
 
@@ -165,6 +185,8 @@ const jsBabel = () => {
       )
       // 圧縮済みのファイルを出力先に保存
       .pipe(dest(destPath.js))
+      // WordPress用
+      // .pipe(dest(destWpPath.js))
   );
 };
 
@@ -220,15 +242,32 @@ const clean = () => {
   return del(destPath.all, { force: true });
 };
 // ファイルの監視
+// HTML用（WordPressの場合にはコメントアウト）
 const watchFiles = () => {
   watch(srcPath.css, series(cssSass, browserSyncReload));
   watch(srcPath.js, series(jsBabel, browserSyncReload));
   watch(srcPath.img, series(imgImagemin, browserSyncReload));
   watch(srcPath.ejs, series(ejsCompile, browserSyncReload));
 };
+// WordPress用
+// const watchFiles = () => {
+//   watch(srcPath.css, series(cssSass));
+//   watch(srcPath.js, series(jsBabel));
+//   watch(srcPath.img, series(imgImagemin));
+//   watch(srcPath.ejs, series(ejsCompile));
+// };
 
 // ブラウザシンク付きの開発用タスク
-exports.default = series(series(cssSass, jsBabel, imgImagemin, ejsCompile), parallel(watchFiles, browserSyncFunc));
+// HTML用
+exports.default = series(
+  series(cssSass, jsBabel, imgImagemin, ejsCompile),
+  parallel(watchFiles, browserSyncFunc)
+);
+// WordPress用
+// exports.default = series(series(cssSass, jsBabel, imgImagemin, ejsCompile), parallel(watchFiles));
 
 // 本番用タスク
+// HTML用
 exports.build = series(clean, cssSass, jsBabel, imgImagemin, ejsCompile);
+// WordPress用
+// exports.build = series(clean, cssSass, jsBabel, imgImagemin, ejsCompile);
