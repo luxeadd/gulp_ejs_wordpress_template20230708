@@ -45,11 +45,15 @@
 }
 
 .p-header__drawer {
-  position: absolute;
-  top: rem(25);
-  transform: translateY(-50%);
-  right: rem(20);
-  z-index: $hamburger;
+  display: none;
+  @include mq(md) {
+    display: block;
+    position: fixed;
+    width: rem(32);
+    top: rem(10);
+    right: rem(20);
+    z-index: $hamburger;
+  }
 }
 
 .p-header__drawer-menu {

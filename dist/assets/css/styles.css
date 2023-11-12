@@ -149,7 +149,18 @@ a {
 /* フォームリセット */
 
 .c-hamburger {
-	display: none;
+	-webkit-text-decoration: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+	width: 100%;
 }
 
 .c-hamburger__line {
@@ -396,11 +407,7 @@ a {
 }
 
 .p-header__drawer {
-	position: absolute;
-	right: 1.25rem;
-	top: 1.5625rem;
-	transform: translateY(-50%);
-	z-index: 103;
+	display: none;
 }
 
 .p-header__overlay {
@@ -456,21 +463,6 @@ html {
 
 html {
 	font-size: 16px;
-}
-
-.c-hamburger {
-	-webkit-text-decoration: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	display: inline-block;
-	height: 25px;
-	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-	width: 25px;
 }
 
 .l-inner {
@@ -561,6 +553,15 @@ html {
 
 .p-header__logo {
 	width: 4.375rem;
+}
+
+.p-header__drawer {
+	display: block;
+	position: fixed;
+	right: 1.25rem;
+	top: 0.625rem;
+	width: 2rem;
+	z-index: 103;
 }
 
 .p-header__menu {

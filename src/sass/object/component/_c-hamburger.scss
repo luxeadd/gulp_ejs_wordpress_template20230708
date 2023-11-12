@@ -3,22 +3,18 @@ $hamburger-color1: #333; //通常時ボタンカラー
 $hamburger-color2: #fff; //展開時ボランカラー
 
 .c-hamburger {
-  display: none;
-
-  @include mq(md) {
-    display: inline-block;
-    text-decoration: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
+  display: inline-block;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  width: 100%;
 }
 
 .c-hamburger:hover,
