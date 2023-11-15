@@ -57,4 +57,15 @@ document.addEventListener("keydown", function (e) {
     screenUnLock();
   }
 });
+
+// ----------------------
+// ページトップ表示切り替え
+// ----------------------
+var jsPageTopBtn = document.querySelector('.js-page-top');
+function getScrolled() {
+  return window.pageYOffset !== undefined ? window.pageYOffset : document.documentElement.scrollTop;
+}
+window.onscroll = function () {
+  getScrolled() > 1000 ? jsPageTopBtn.classList.add('is-active') : jsPageTopBtn.classList.remove('is-active');
+};
 jQuery(function ($) {});
