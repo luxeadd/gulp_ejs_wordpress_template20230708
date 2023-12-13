@@ -110,7 +110,6 @@ a:not([class]) {
 img {
 	display: block;
 	max-width: 100%;
-	width: 100%;
 }
 
 /* Natural flow and rhythm in articles by default */
