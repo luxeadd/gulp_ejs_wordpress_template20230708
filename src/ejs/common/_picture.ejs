@@ -1,0 +1,19 @@
+<picture>
+  <% if (sp !== '') { %>
+    <source srcset="<%- baseMeta.image %><%- img %><%- sp %>.webp" media="(max-width:767px)" type="image/webp" />
+    <source srcset="<%- baseMeta.image %><%- img %><%- sp %><%- file %>" media="(max-width:767px)" />
+    <% } %>
+  <source srcset="<%- baseMeta.image %><%- img %>.webp" type="image/webp" />
+  <img src="<%- baseMeta.image %><%- img %><%- file %>" alt="<%- alt %>" <% if (async === 'true') { %>decoding="async"<% } %> <% if (lazy === 'true') { %>loading="lazy"<% } %>>
+</picture>
+<%# include(baseMeta.path +'common/_picture', 
+  { 
+    baseMeta:baseMeta, 
+    img:'common/image1', 
+    file:'.jpg', 
+    sp:'-sp', 
+    alt:'ダミー画像', 
+    async:'true', 
+    lazy:'true', 
+  }
+) %>

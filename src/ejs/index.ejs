@@ -17,7 +17,17 @@ const baseMeta = {
     <!-- ヘッダー -->
     <%- include(baseMeta.path + 'common/_header', { baseMeta:baseMeta } ) %>
 
-
+    <%- include(baseMeta.path +'common/_picture', 
+      { 
+        baseMeta:baseMeta, 
+        img:'common/image1', 
+        file:'.jpg', 
+        sp:'-sp', 
+        alt:'ダミー画像', 
+        async:'true', 
+        lazy:'true', 
+      }
+    ) %>
 
   </main>
   <!-- ページトップボタン -->
