@@ -1,6 +1,28 @@
 ## ファイルの特徴
-- htmlによるコーディング
+- EJS兼WordPress用コーディングファイル
 - src内の情報は静的ページ（dist）に反映される
+
+
+## ファイル構成  
+∟ dist ・・・本番用  
+　∟ assets  
+　　∟ css  
+　　∟ images  
+　　∟ js  
+　∟ index.html
+
+∟ src ・・・開発用  
+　∟ ejs  
+　∟ images  
+　∟ js  
+　∟ sass  
+　　∟ base ・・・リセット系    
+　　∟ utility ・・・共通SCSS  
+　　∟ object ・・・FLOCSS対応  
+　　∟ style.css ・・・インクルード用CSS  
+
+∟ _gulp ・・・gulpファイル格納用 
+
 
 ## このコーディングファイルの使い方
 まず、以下に書いてある内容を必ずお読みください
