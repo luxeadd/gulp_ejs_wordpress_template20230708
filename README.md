@@ -21,6 +21,8 @@
 　　∟ object ・・・FLOCSS対応  
 　　∟ style.css ・・・インクルード用CSS  
 
+∟ WordPressTheme ・・・WordPress関係ファイル（使用する場合はgulpfile.jsをWordPress用に編集すること） 
+
 ∟ _gulp ・・・gulpファイル格納用 
 
 
