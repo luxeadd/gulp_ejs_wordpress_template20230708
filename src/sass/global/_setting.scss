@@ -48,17 +48,4 @@ body {
   color: $base-color;
   background: $base-background;
   line-height: 1.5;
-  // footerを最下部に持ってくる仕様
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  // footerを最下部に持ってくる仕様
-  flex: 1;
-}
-
-/* 背景固定用CSS */
-.is-screen-locked {
-  overflow: hidden;
 }

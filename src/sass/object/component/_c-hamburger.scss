@@ -53,9 +53,9 @@ $hamburger-color2: #fff; //展開時ボランカラー
 .c-hamburger__line::after {
   top: 5px;
 }
-.c-hamburger[aria-expanded="true"] {
+.c-hamburger.is_active {
 }
-.c-hamburger[aria-expanded="true"] .c-hamburger__line {
+.c-hamburger.is_active .c-hamburger__line {
   background-color: transparent;
   &::before,
   &::after {
@@ -63,13 +63,13 @@ $hamburger-color2: #fff; //展開時ボランカラー
     background-color: $hamburger-color2;
   }
 }
-.c-hamburger[aria-expanded="true"] .c-hamburger__line::before {
+.c-hamburger.is_active .c-hamburger__line::before {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
-.c-hamburger[aria-expanded="true"] .c-hamburger__line::after {
+.c-hamburger.is_active .c-hamburger__line::after {
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);

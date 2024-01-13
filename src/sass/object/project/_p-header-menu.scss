@@ -12,19 +12,23 @@
     right: 0;
     bottom: 0;
     overflow-y: scroll;
-
-    transform: translateX(2000px);
-    transition: 0.4s;
     z-index: $drawer;
+    background: #000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.4s ease,
+      visibility 0.4s ease,
+      background 0.4s ease;
   }
 }
 
-.is-drawerActive {
-  .p-header-menu {
-    @include mq(md) {
-      background-color: #000;
-      transform: translateX(0px);
-    }
+.p-header-menu.is_active {
+  @include mq(md) {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 

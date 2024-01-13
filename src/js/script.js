@@ -18,40 +18,35 @@ const html = document.querySelector("html");
 
 //ハンバーガーメニュークリックアクション
 jsHamburger.addEventListener("click", function () {
-  body.classList.toggle("is-drawerActive");
-  if (this.getAttribute("aria-expanded") == "false") {
-    this.setAttribute("aria-expanded", "true");
-    spHeaderMenu.setAttribute("aria-hidden", "false");
-    // screenLock();
-    body.classList.add("is-screen-locked");
+  if (!this.classList.contains("is_active")) {
+    this.classList.add("is_active");
+    spHeaderMenu.classList.add("is_active");
   } else {
-    this.setAttribute("aria-expanded", "false");
-    spHeaderMenu.setAttribute("aria-hidden", "true");
-    // screenUnLock();
-    body.classList.remove("is-screen-locked");
+    this.classList.remove("is_active");
+    spHeaderMenu.classList.remove("is_active");
   }
 });
+
 //ドラワーメニュー展開時背景クリックアクション
-drawerBackground.addEventListener("click", () => {
-  body.classList.remove("is-drawerActive");
-  jsHamburger.setAttribute("aria-expanded", "false");
-  spHeaderMenu.setAttribute("aria-hidden", "true");
-  screenUnLock();
-});
+// drawerBackground.addEventListener("click", () => {
+//   jsHamburger.classList.remove("is_active");
+//   spHeaderMenu.setAttribute("aria-hidden", "true");
+//   screenUnLock();
+// });
+
 //ドラワーメニュー展開時リストクリックアクション
 for (let a = 0; a < drawerMenuItems.length - 1; a++) {
   drawerMenuItems[a].addEventListener("click", () => {
-    body.classList.remove("is-drawerActive");
-    jsHamburger.setAttribute("aria-expanded", "false");
-    spHeaderMenu.setAttribute("aria-hidden", "true");
+    jsHamburger.classList.remove("is_active");
+    spHeaderMenu.classList.remove("is_active");
   });
-}
+};
+
 // escキーでドロワーメニュー閉じる
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
-    body.classList.remove("is-drawerActive");
-    jsHamburger.setAttribute("aria-expanded", "false");
-    spHeaderMenu.setAttribute("aria-hidden", "true");
+    jsHamburger.classList.remove("is_active");
+    spHeaderMenu.classList.remove("is_active");
     screenUnLock();
   }
 });

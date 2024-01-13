@@ -13,20 +13,8 @@
 body {
 	background: #fff;
 	color: #666;
-	display: flex;
-	flex-direction: column;
 	font-weight: 400;
 	line-height: 1.5;
-}
-
-main {
-	flex: 1;
-}
-
-/* 背景固定用CSS */
-
-.is-screen-locked {
-	overflow: hidden;
 }
 
 .u-desktop {
@@ -86,9 +74,15 @@ html {
 /* Set core body defaults */
 
 body {
+	display: flex;
+	flex-direction: column;
 	line-height: 1.5;
 	min-height: 100vh;
 	text-rendering: optimizeSpeed;
+}
+
+main {
+	flex: 1;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
@@ -198,21 +192,21 @@ a {
 	top: 5px;
 }
 
-.c-hamburger[aria-expanded=true] .c-hamburger__line {
+.c-hamburger.is_active .c-hamburger__line {
 	background-color: transparent;
 }
 
-.c-hamburger[aria-expanded=true] .c-hamburger__line::before,
-.c-hamburger[aria-expanded=true] .c-hamburger__line::after {
+.c-hamburger.is_active .c-hamburger__line::before,
+.c-hamburger.is_active .c-hamburger__line::after {
 	background-color: #fff;
 	top: 0;
 }
 
-.c-hamburger[aria-expanded=true] .c-hamburger__line::before {
+.c-hamburger.is_active .c-hamburger__line::before {
 	transform: rotate(45deg);
 }
 
-.c-hamburger[aria-expanded=true] .c-hamburger__line::after {
+.c-hamburger.is_active .c-hamburger__line::after {
 	transform: rotate(-45deg);
 }
 
@@ -428,7 +422,7 @@ a {
 	z-index: 101;
 }
 
-.is-drawerActive .p-header__overlay {
+.p-header__overlay.is_active {
 	opacity: 0.8;
 	transition: 0.4s;
 	visibility: visible;
@@ -437,6 +431,8 @@ a {
 .p-header__menu {
 	margin-left: auto;
 }
+
+/* 背景固定用CSS */
 
 .u-hidden-pc {
 	display: none;
@@ -512,22 +508,26 @@ html {
 }
 
 .p-header-menu {
+	background: #000;
 	bottom: 0;
 	height: 100vh;
 	max-width: 32.5rem;
+	opacity: 0;
 	overflow-y: scroll;
+	pointer-events: none;
 	position: fixed;
 	right: 0;
 	top: 0;
-	transform: translateX(2000px);
-	transition: 0.4s;
+	transition: opacity 0.4s ease, visibility 0.4s ease, background 0.4s ease;
+	visibility: hidden;
 	width: 100%;
 	z-index: 102;
 }
 
-.is-drawerActive .p-header-menu {
-	background-color: #000;
-	transform: translateX(0px);
+.p-header-menu.is_active {
+	opacity: 1;
+	pointer-events: auto;
+	visibility: visible;
 }
 
 .p-header-menu__items {
@@ -570,6 +570,10 @@ html {
 .p-header__menu {
 	margin-left: 0;
 	margin-left: initial;
+}
+
+body:has(.c-hamburger.is_active) {
+	overflow: hidden;
 }
 
 .u-hidden-pc {

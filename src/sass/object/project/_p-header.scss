@@ -26,7 +26,6 @@
   }
 }
 
-
 .p-header__logo {
   width: rem(95.4);
   height: inherit;
@@ -75,12 +74,10 @@
   opacity: 0;
 }
 
-.is-drawerActive {
-  .p-header__overlay {
-    visibility: visible;
-    opacity: 0.8;
-    transition: 0.4s;
-  }
+.p-header__overlay.is_active {
+  visibility: visible;
+  opacity: 0.8;
+  transition: 0.4s;
 }
 
 .p-header__menu {
