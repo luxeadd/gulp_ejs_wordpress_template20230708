@@ -105,9 +105,9 @@ const cssSass = () => {
       .pipe(mmq())
       // ソースマップを書き出し
       .pipe(sourcemaps.write("./"))
-      // コンパイル済みのCSSファイルを出力先に保存
+      // html用 コンパイル済みのCSSファイルを出力先に保存
       .pipe(dest(destPath.css))
-      // WordPress用
+      // WordPress用 コンパイル済みのCSSファイルを出力先に保存
       // .pipe(dest(destWpPath.css))
       // Sassコンパイルが完了したことを通知
       .pipe(
@@ -124,8 +124,10 @@ const imgImagemin = () => {
   // 画像ファイルを指定
   return (
     src(srcPath.img)
-      // 変更があった画像のみ処理対象に
+      // html用　変更があった画像のみ処理対象に
       .pipe(changed(destPath.img))
+      // WordPress用　変更があった画像のみ処理対象に
+      // .pipe(changed(destWpPath.img))
       // 画像を圧縮
       .pipe(
         imagemin(
@@ -152,16 +154,11 @@ const imgImagemin = () => {
       )
       // 以下HTML用（WordPressの場合にはコメントアウト）
       .pipe(dest(destPath.img))
-      //webpに変換
       .pipe(webp())
-      // 圧縮済みの画像ファイルを出力先に保存
       .pipe(dest(destPath.img))
     // 以下WordPress用
-    // .pipe(dest(destPath.img))
     // .pipe(dest(destWpPath.img))
-    //webpに変換
     // .pipe(webp())
-    // 圧縮済みの画像ファイルを出力先に保存
     // .pipe(dest(destWpPath.img))
   );
 };
@@ -254,7 +251,6 @@ const watchFiles = () => {
 //   watch(srcPath.css, series(cssSass));
 //   watch(srcPath.js, series(jsBabel));
 //   watch(srcPath.img, series(imgImagemin));
-//   watch(srcPath.ejs, series(ejsCompile));
 // };
 
 // ブラウザシンク付きの開発用タスク
@@ -264,10 +260,10 @@ exports.default = series(
   parallel(watchFiles, browserSyncFunc)
 );
 // WordPress用
-// exports.default = series(series(cssSass, jsBabel, imgImagemin, ejsCompile), parallel(watchFiles));
+// exports.default = series(series(cssSass, jsBabel, imgImagemin), parallel(watchFiles));
 
 // 本番用タスク
 // HTML用
 exports.build = series(clean, cssSass, jsBabel, imgImagemin, ejsCompile);
 // WordPress用
-// exports.build = series(clean, cssSass, jsBabel, imgImagemin, ejsCompile);
+// exports.build = series(clean, cssSass, jsBabel, imgImagemin);
