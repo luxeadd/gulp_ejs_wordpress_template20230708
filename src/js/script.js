@@ -1,38 +1,28 @@
-const jsHamburger = document.getElementById("js-hamburger");
+const header = document.querySelector(".js-header");
+const hamburger = document.querySelector(".js-hamburger");
 const body = document.body;
-const spHeaderMenu = document.getElementById("js-drawer-menu");
-const drawerBackground = document.getElementById("js-header__overlay");
+const spHeaderMenu = document.querySelector(".js-drawer-menu");
+const drawerBackground = document.querySelector(".js-header__overlay");
 const drawerMenuItems = document.querySelectorAll(".js-header-menu__item");
 const html = document.querySelector("html");
-//ドロワーメニュー展開時背景固定1
-// let lockTop;
-// function screenLock() {
-//   lockTop = document.documentElement.scrollTop || document.body.scrollTop;
-//   html.classList.add("is-screen-locked");
-//   return lockTop;
-// }
-// function screenUnLock() {
-//   html.classList.remove("is-screen-locked");
-//   window.scrollTo(0, lockTop);
-// }
 
+// ----------------------
 //ハンバーガーメニュークリックアクション
-jsHamburger.addEventListener("click", function () {
-  if (!this.classList.contains("is_active")) {
-    this.classList.add("is_active");
-    spHeaderMenu.classList.add("is_active");
-  } else {
-    this.classList.remove("is_active");
-    spHeaderMenu.classList.remove("is_active");
+// ----------------------
+hamburger.addEventListener("click", function () {
+  var expanded = this.getAttribute("aria-expanded") === "true" || false;
+  this.setAttribute("aria-expanded", !expanded);
+  if (spHeaderMenu) {
+    spHeaderMenu.setAttribute("aria-hidden", expanded);
+    if (!expanded) {
+      header.classList.add("is_active");
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      header.classList.remove("is_active");
+    }
   }
 });
-
-//ドラワーメニュー展開時背景クリックアクション
-// drawerBackground.addEventListener("click", () => {
-//   jsHamburger.classList.remove("is_active");
-//   spHeaderMenu.setAttribute("aria-hidden", "true");
-//   screenUnLock();
-// });
 
 //ドラワーメニュー展開時リストクリックアクション
 for (let a = 0; a < drawerMenuItems.length - 1; a++) {
@@ -42,7 +32,9 @@ for (let a = 0; a < drawerMenuItems.length - 1; a++) {
   });
 };
 
+// ----------------------
 // escキーでドロワーメニュー閉じる
+// ----------------------
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     jsHamburger.classList.remove("is_active");
@@ -62,6 +54,6 @@ window.onscroll = function() {
   ( getScrolled() > 1000 ) ? jsPageTopBtn.classList.add( 'is-active' ): jsPageTopBtn.classList.remove( 'is-active' );
 };         
 
-jQuery(function ($) {
+// jQuery(function ($) {
 
-});
+// });

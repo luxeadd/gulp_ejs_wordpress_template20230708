@@ -1,38 +1,51 @@
 @use "global" as *;
-$hamburger-color1: #333; //通常時ボタンカラー
-$hamburger-color2: #fff; //展開時ボランカラー
+$hamburger-color1: $white; //通常時ボタンカラー
+$hamburger-color2: $white; //展開時ボランカラー
 
 .c-hamburger {
-  display: inline-block;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  width: 100%;
+  @include mq(md) {
+    display: inline-block;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: $base-color;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: background 0.3s ease;
+    position: relative;
+    width: rem(50);
+    height: rem(50);
+    border-radius: 50%;
+  }
 }
 
-.c-hamburger:hover,
-.c-hamburger:focus {
+@media (hover: hover) {
+  .c-hamburger:hover {
+    background: $black;
+
+    .c-hamburger__line {
+      background: $hamburger-color2;
+    }
+    &[aria-expanded="true"] {
+      .c-hamburger__line {
+        background: transparent;
+      }
+    }
+  }
 }
 
 .c-hamburger__line {
+  display: block;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 18px;
-  height: 2px;
-  background-color: $hamburger-color1;
-  -webkit-transition: inherit;
-  transition: inherit;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(20);
+  height: 1px;
+  background: $hamburger-color1;
+  transition: background 0.3s ease;
 }
 
 .c-hamburger__line::before,
@@ -41,36 +54,38 @@ $hamburger-color2: #fff; //展開時ボランカラー
   display: block;
   width: 100%;
   height: 100%;
-  background-color: inherit;
+  background: inherit;
   content: "";
-  -webkit-transition: inherit;
-  transition: inherit;
+  transition: transform 0.3s ease;
 }
 
 .c-hamburger__line::before {
-  top: -5px;
+  top: rem(-6);
 }
 .c-hamburger__line::after {
-  top: 5px;
+  top: rem(6);
 }
-.c-hamburger.is_active {
-}
-.c-hamburger.is_active .c-hamburger__line {
-  background-color: transparent;
-  &::before,
-  &::after {
-    top: 0;
-    background-color: $hamburger-color2;
-  }
-}
-.c-hamburger.is_active .c-hamburger__line::before {
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
+.c-hamburger[aria-expanded="true"] {
+  background: $black;
 
-.c-hamburger.is_active .c-hamburger__line::after {
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  .c-hamburger__line {
+    background: transparent;
+
+    &::before,
+    &::after {
+      top: 0;
+      background: $hamburger-color2;
+    }
+  }
+  .c-hamburger__line::before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .c-hamburger__line::after {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
 }

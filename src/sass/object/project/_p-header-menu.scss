@@ -1,77 +1,131 @@
 @use "global" as *;
 
 .p-header-menu {
-  height: inherit;
+  display: flex;
+  align-items: center;
 
   @include mq(md) {
-    position: fixed;
-    width: 100%;
-    max-width: rem(520);
-    height: 100vh;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow-y: scroll;
-    z-index: $drawer;
-    background: #000;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 0.4s ease,
-      visibility 0.4s ease,
-      background 0.4s ease;
-  }
-}
-
-.p-header-menu.is_active {
-  @include mq(md) {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    display: none;
   }
 }
 
 .p-header-menu__items {
   display: flex;
-  height: inherit;
   align-items: center;
-  padding: 0;
-
-  @include mq(md) {
-    height: initial;
-    display: block;
-    padding: rem(120) 0 rem(100);
-  }
+  gap: rem(50);
+  height: 100%;
 }
 
 .p-header-menu__item {
-  height: inherit;
-  color: #fff;
-}
+  font-size: rem(16);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
 
-.p-header-menu__item + .p-header-menu__item {
-  margin-left: rem(30);
+  &::after {
+    content: "";
+    display: block;
+    width: rem(8);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: $base-color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: all 0.5s ease;
+    opacity: 0;
+  }
 
-  @include mq(md) {
-    margin-left: initial;
+  a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: rem(9);
+  }
+
+  a[target="_blank"]::after {
+    
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -300%);
+      }
+    }
   }
 }
 
-.p-header-menu__item a {
-  width: 100%;
+.p-header-menu__btn {
+  font-size: rem(16);
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-decoration: none;
-  padding: 0;
+}
 
-  @include mq(md) {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: rem(10) 0;
-    text-align: center;
+
+.p-header-menu__item--subMenu {
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover .p-header-menu__subItems {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+}
+
+.p-header-menu__subItems {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  width: fit-content;
+  padding: rem(30) rem(40);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(20);
+  background: $white;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.p-header-menu__subItem {
+  font-size: rem(13);
+  padding-left: rem(16);
+  position: relative;
+  width: rem(170);
+  transition: padding-left 0.3s ease;
+
+  &::before {
+    content: "";
+    display: block;
+    width: rem(8);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(#ccc, $alpha: .7);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    z-index: 2;
+    transition: background 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      padding-left: rem(20);
+      &::before {
+        background: $base-color;
+      }
+    }
   }
 }
