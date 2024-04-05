@@ -26,7 +26,6 @@
   <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary">
-  </meta>
   <!-- /ogp -->
 
   <?php wp_head(); ?>
