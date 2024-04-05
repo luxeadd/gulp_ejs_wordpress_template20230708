@@ -53,7 +53,7 @@
       <?php endif; ?>
       <!-- ドロワーアイコン  -->
       <div class="p-header__drawerBtn">
-        <button type="button" class="c-hamburger js-hamburger" aria-controls="drawer_menu" aria-expanded="false" area-label="メニューを開閉する">
+        <button type="button" class="c-hamburger js-hamburger" aria-controls="drawer_menu" aria-expanded="false" aria-label="メニューを開閉する">
           <span class="c-hamburger__line"></span>
         </button>
       </div>
@@ -78,14 +78,14 @@
         </ul>
       </nav>
       <!-- ドロワーメニュー -->
-      <nav class="p-header__drawer-menu  p-drawer-menu js-drawer-menu" id="drawer_menu" area-hidden="true">
+      <nav class="p-header__drawer-menu  p-drawer-menu js-drawer-menu" id="drawer_menu" aria-hidden="true">
         <ul class="p-drawer-menu__items">
-          <li id="js-drawer-menu__item" class="p-drawer-menu__item  "><a href="<?php echo $urls['about']; ?>">企業情報</a></li>
-          <li id="js-drawer-menu__item" class="p-drawer-menu__item"><a href="<?php echo $urls['solution']; ?>">事業紹介</a></li>
-          <li id="js-drawer-menu__item" class="p-drawer-menu__item"><a href="<?php echo $urls['sustainability']; ?>">サステナビリティ</a></li>
-          <li id="js-drawer-menu__item" class="p-drawer-menu__item"><a href="<?php echo $urls['news']; ?>">お知らせ</a></li>
-          <li id="js-drawer-menu__item" class="p-drawer-menu__item"><a href="<?php echo $urls['recruit']; ?>" target="_blank">採用情報</a></li>
-          <li id="js-drawer-menu__item" class="p-drawer-menu__item"><a href="<?php echo $urls['contact']; ?>">お問い合わせ</a></li>
+          <li class="p-drawer-menu__item  "><a href="<?php echo $urls['about']; ?>">企業情報</a></li>
+          <li class="p-drawer-menu__item"><a href="<?php echo $urls['solution']; ?>">事業紹介</a></li>
+          <li class="p-drawer-menu__item"><a href="<?php echo $urls['sustainability']; ?>">サステナビリティ</a></li>
+          <li class="p-drawer-menu__item"><a href="<?php echo $urls['news']; ?>">お知らせ</a></li>
+          <li class="p-drawer-menu__item"><a href="<?php echo $urls['recruit']; ?>" target="_blank">採用情報</a></li>
+          <li class="p-drawer-menu__item"><a href="<?php echo $urls['contact']; ?>">お問い合わせ</a></li>
         </ul>
       </nav>
     </div>
