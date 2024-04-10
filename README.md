@@ -53,7 +53,7 @@
 ### - Gulpの使い方
 - `npx gulp` ないしは `gulp` でタスクランナー起動
   - コーディング中はずっと動かしたままにすること
-- 提出時は `npx gulp build`ないしは`gulp build` コマンドでフォルダ内の整理を行うこと（資料動画参考）
+- 提出時は `npx gulp build`ないしは`gulp build` コマンドでフォルダ内の整理を行うこと
 
 ## コーディング時の操作方法
 - `srcフォルダ`内のみを触る
@@ -63,10 +63,51 @@
 ## ファイルの特徴
 - スマホファーストおよびパソコンファーストどちらも設定が可能`（変数管理）`
   - src/sass/global/_breakpoints.scssにある変数を`pc` or `sp`に設定する（初期値：`sp`）
-  - スマホファーストとパソコンファーストを変数一つで切り替えが可能になっています（資料動画参考）
+  - スマホファーストとパソコンファーストを変数一つで切り替えが可能になっています
   
 ## 注意点
 - `baseフォルダ内`は変更を加えないこと
 - 納品時（提出時）は`_gulpフォルダ`内の`node_modules`を削除すること
-- 提出時は`gulp build`コマンドを入力し、フォルダ内の整理を行うこと
+- 提出時は`gulp build`コマンドを入力し、フォルダ内の整理を行うこと 
+## 画像出力について
+
+- 画像効率化の観点よりテンプレートを組んでいますので、以下の様式を使用してください。 （レスポンシブ、webp 対応）
+
+EJS
+
+```
+<%- include(baseMeta.path +'common/_picture',
+  {
+    baseMeta:baseMeta,
+    img:'common/image1',
+    file:'.jpg',
+    sp:'-sp',
+    alt:'ダミー画像',
+    async:'true',
+    lazy:'true',
+  }
+) %>
+```
+
+WordPress
+
+```
+<?php
+    $args = [
+      'pictureImg' => 'common/image',
+      'spImg' => 'true',
+      'spImgName' => '',
+      'alt' => '',
+      'file' => '.jpg',
+      'webp' => 'true',
+      'pcWidth' => '850',
+      'pcHeight' => '567',
+      'spWidth' => '390',
+      'spHeight' => '260',
+      'async' => 'true',
+      'lazy' => 'true',
+    ];
+    get_template_part('tmp/picture', null, $args);
+?>
+```
 # gulp_ejs_wordpress_template20230708
