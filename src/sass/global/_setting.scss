@@ -33,6 +33,7 @@ $base-background: #fff;
 $back: #333;
 $black: #333;
 $white: #fff;
+$btn-fucus: #fff;
 
 /********************************
 * z-index
@@ -43,9 +44,19 @@ $drawer: 102;
 $drawer-back: 101;
 $page-top: 99;
 
+/********************************
+* セッティング反映
+********************************/
 body {
-  font-weight: $normal;
   color: $base-color;
+  font-family: $base-font-family;
+  font-weight: $normal;
   background: $base-background;
   line-height: 1.5;
+}
+
+a {
+  &:focus-visible {
+    outline: 2px solid #007bff;
+  }
 }
