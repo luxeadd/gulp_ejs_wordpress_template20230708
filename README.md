@@ -53,7 +53,25 @@
 ### - Gulpの使い方
 - `npx gulp` ないしは `gulp` でタスクランナー起動
   - コーディング中はずっと動かしたままにすること
-- 提出時は `npx gulp build`ないしは`gulp build` コマンドでフォルダ内の整理を行うこと
+- 提出時は `npx gulp build`ないしは`gulp build` コマンドでフォルダ内の整理を行うこと 
+- ejsとWordPress時のGulpの挙動を条件分岐させています。作業開始前に必ずgulpfile.jsの[初期設定]を確認・変更してください。 
+- WordPressの場合はコンパイルされたファイルは本ディレクトリ内ではなく、gulpfile.jsの[初期設定]にて設定したWordPress指定ディレクトリへ出力されます。
+```
+//---------------------------------------------------------------------
+//      初期設定
+// --------------------------------------------------------------------
+// コンパイル設定 ejsを使う場合は[ejs]、WordPressを使う場合は[wp]を指定
+const compilingSet = "ejs";
+// WordPressの場合ローカル環境のプロジェクト名とテーマ名を指定
+const wpProject = "gulp-test";
+const wpThemeName = "test"; //style.cssのテーマ名も変更すること
+const wpLocalUrl = "http://gulp-test.local/"; //ローカル環境のURL
+//出力先のWordPressテーマのフォルダパス
+const wpFolder =
+  process.env.BASE_FOLDER ||
+  `/Users/[ユーザー名]/Local Sites/${wpProject}/app/public/wp-content/themes/${wpThemeName}`;
+// -----------------------------------------------------------------------
+```
 
 ## コーディング時の操作方法
 - `srcフォルダ`内のみを触る
