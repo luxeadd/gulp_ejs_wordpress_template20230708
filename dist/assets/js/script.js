@@ -1,10 +1,12 @@
-const header = document.querySelector(".js-header");
-const hamburger = document.querySelector(".js-hamburger");
-const body = document.body;
-const spHeaderMenu = document.querySelector(".js-drawer-menu");
-const drawerBackground = document.querySelector(".js-header__overlay");
-const drawerMenuItems = document.querySelectorAll(".js-header-menu__item");
-const html = document.querySelector("html");
+"use strict";
+
+var header = document.querySelector(".js-header");
+var hamburger = document.querySelector(".js-hamburger");
+var body = document.body;
+var spHeaderMenu = document.querySelector(".js-drawer-menu");
+var drawerBackground = document.querySelector(".js-header__overlay");
+var drawerMenuItems = document.querySelectorAll(".js-header-menu__item");
+var html = document.querySelector("html");
 
 // ----------------------
 //ハンバーガーメニュークリックアクション
@@ -25,8 +27,8 @@ hamburger.addEventListener("click", function () {
 });
 
 //ドラワーメニュー展開時リストクリックアクション
-for (let a = 0; a < drawerMenuItems.length - 1; a++) {
-  drawerMenuItems[a].addEventListener("click", () => {
+for (var a = 0; a < drawerMenuItems.length - 1; a++) {
+  drawerMenuItems[a].addEventListener("click", function () {
     jsHamburger.classList.remove("is_active");
     spHeaderMenu.classList.remove("is_active");
   });
@@ -46,16 +48,12 @@ document.addEventListener("keydown", function (e) {
 // ----------------------
 // ページトップ表示切り替え
 // ----------------------
-let jsPageTopBtn = document.querySelector(".js-page-top");
+var jsPageTopBtn = document.querySelector(".js-page-top");
 function getScrolled() {
-  return window.pageYOffset !== undefined
-    ? window.pageYOffset
-    : document.documentElement.scrollTop;
+  return window.pageYOffset !== undefined ? window.pageYOffset : document.documentElement.scrollTop;
 }
 window.onscroll = function () {
-  getScrolled() > 1000
-    ? jsPageTopBtn.classList.add("is-active")
-    : jsPageTopBtn.classList.remove("is-active");
+  getScrolled() > 1000 ? jsPageTopBtn.classList.add("is-active") : jsPageTopBtn.classList.remove("is-active");
 };
 
 // ----------------------
@@ -65,7 +63,6 @@ window.onscroll = function () {
 // ※スムーススクロールが不要なアンカーリンクにはdata-smooth-scroll="disabled"を付与すること
 function initializeSmoothScroll() {
   var anchorLinks = document.querySelectorAll('a[href*="#"]');
-
   if (anchorLinks.length === 0) return;
   anchorLinks.forEach(function (anchorLink) {
     anchorLink.addEventListener("click", handleClick, false);
@@ -82,41 +79,39 @@ function isHeaderFixed(header) {
 // 固定配置のヘッダーのブロックサイズを取得
 function getHeaderBlockSize() {
   var header = document.querySelector("[data-fixed-header]");
-  var headerBlockSize =
-    header && isHeaderFixed(header)
-      ? window.getComputedStyle(header).blockSize
-      : "0";
+  var headerBlockSize = header && isHeaderFixed(header) ? window.getComputedStyle(header).blockSize : "0";
   return headerBlockSize;
 }
-
 console.log("ヘッダーの高さ" + getHeaderBlockSize());
-
 function scrollToTarget(element) {
   var headerBlockSize = getHeaderBlockSize();
   // 固定配置のヘッダーのブロックサイズを`scrollMarginBlockStart`に設定
   element.style.scrollMarginBlockStart = headerBlockSize;
   // ユーザーが視差効果を減らす設定をしているかどうかを判定
-  var isPrefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  var isPrefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // 視差効果を減らす設定がされている場合は 'instant'、そうでない場合は 'smooth' にスクロール動作を設定
   var scrollBehavior = isPrefersReduced ? "instant" : "smooth";
   // 縦書きの場合は左スクロール、横書きの場合は上スクロールを実行
-  element.scrollIntoView({ behavior: scrollBehavior, inline: "end" });
+  element.scrollIntoView({
+    behavior: scrollBehavior,
+    inline: "end"
+  });
 }
-
 function focusTarget(element) {
   // ターゲット要素にフォーカスを設定
-  element.focus({ preventScroll: true });
+  element.focus({
+    preventScroll: true
+  });
   // アクティブな要素がターゲット要素でない場合
   if (document.activeElement !== element) {
     // ターゲット要素のtabindexを一時的に-1に設定
     element.setAttribute("tabindex", "-1");
     // 再度フォーカスを設定
-    element.focus({ preventScroll: true });
+    element.focus({
+      preventScroll: true
+    });
   }
 }
-
 function handleClick(event) {
   // クリックされたボタンが左ボタンでない場合は処理を中断
   if (event.button !== 0) return;
@@ -130,19 +125,8 @@ function handleClick(event) {
   // クリックされたa要素のrole属性がtabである場合
   // クリックされたa要素のrole属性がbuttonである場合
   // クリックされたa要素にdata-smooth-scroll="disabled"が指定されている場合
-  if (
-    !currentLink ||
-    !hash ||
-    currentLink.getAttribute("role") === "tab" ||
-    currentLink.getAttribute("role") === "button" ||
-    currentLink.getAttribute("data-smooth-scroll") === "disabled"
-  )
-    return;
-
-  var target =
-    document.getElementById(decodeURIComponent(hash.slice(1))) ||
-    (hash === "#top" && document.body);
-
+  if (!currentLink || !hash || currentLink.getAttribute("role") === "tab" || currentLink.getAttribute("role") === "button" || currentLink.getAttribute("data-smooth-scroll") === "disabled") return;
+  var target = document.getElementById(decodeURIComponent(hash.slice(1))) || hash === "#top" && document.body;
   if (target) {
     event.preventDefault();
     scrollToTarget(target);
@@ -152,47 +136,31 @@ function handleClick(event) {
     }
   }
 }
-
 function initializePopoverMenu(popoverElement) {
   var anchorLinks = popoverElement.querySelectorAll("a");
-
   if (anchorLinks.length > 0) {
     anchorLinks.forEach(function (link) {
-      link.addEventListener(
-        "click",
-        function (event) {
-          handleHashlinkClick(event, popoverElement);
-        },
-        false
-      );
-      link.addEventListener(
-        "blur",
-        function (event) {
-          handleFocusableElementsBlur(event, popoverElement);
-        },
-        false
-      );
+      link.addEventListener("click", function (event) {
+        handleHashlinkClick(event, popoverElement);
+      }, false);
+      link.addEventListener("blur", function (event) {
+        handleFocusableElementsBlur(event, popoverElement);
+      }, false);
     });
   }
 }
-
 function handleHashlinkClick(event, popover) {
   popover.hidePopover();
 }
-
 function handleFocusableElementsBlur(event, popover) {
   var target = event.relatedTarget;
-
   if (!popover.contains(target)) {
     popover.hidePopover();
   }
 }
-
 var drawer = document.getElementById("drawer_menu");
-
 document.addEventListener("DOMContentLoaded", function () {
   initializeSmoothScroll();
-
   if (drawer) {
     initializePopoverMenu(drawer);
   }
@@ -212,7 +180,8 @@ if (document.querySelector(".js-accordion__btn")) {
       }
     });
   });
-};
+}
+;
 
 /* <div class="c-accordion">
   <button class="c-accordion__btn js-accordion__btn" aria-expanded="false" aria-label="開閉">上智での生涯学習講座の変遷</button>
@@ -246,14 +215,14 @@ if (document.querySelector(".js-accordion__btn")) {
 //   position: relative;
 
 //   &[aria-expanded="true"] {
-    
+
 //   }
 // }
 // .c-accordion__body {
 //   display: grid; 
 //   grid-template-rows: 0fr;
 //   transition: 250ms grid-template-rows ease, 250ms padding-block ease;
-  
+
 //   > div {
 //     overflow: hidden;
 //   }
@@ -264,42 +233,40 @@ if (document.querySelector(".js-accordion__btn")) {
 //   }
 // }
 
-
 // ----------------------
 // タブ制御
 // ----------------------
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // 最初のタブターゲットにis-activeを付与しておく
-  const firstTarget = document.querySelector('.js-works-tab-target');
+  var firstTarget = document.querySelector('.js-works-tab-target');
   if (firstTarget) {
     firstTarget.classList.add('is-active');
   }
 });
 // タブをすべて取得
-const tabs = document.querySelectorAll('.js-works-tab');
-
-tabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => {
+var tabs = document.querySelectorAll('.js-works-tab');
+tabs.forEach(function (tab, index) {
+  tab.addEventListener('click', function () {
     // すべてのタブターゲットを取得
-    const targets = document.querySelectorAll('.js-works-tab-target');
+    var targets = document.querySelectorAll('.js-works-tab-target');
 
-		// すべてのタブからis-activeクラスを外す
-    tabs.forEach(t => t.classList.remove('is-active'));
+    // すべてのタブからis-activeクラスを外す
+    tabs.forEach(function (t) {
+      return t.classList.remove('is-active');
+    });
 
-		// クリックされたタブにis-activeクラスを付与
+    // クリックされたタブにis-activeクラスを付与
     tab.classList.add('is-active');
-    
+
     // すべてのタブターゲットからis-activeクラスを外す
-    targets.forEach(target => {
+    targets.forEach(function (target) {
       target.classList.remove('is-active');
     });
-    
+
     // クリックされたタブの順番と同じタブターゲットにis-activeクラスを付与
     targets[index].classList.add('is-active');
   });
 });
-
-
 
 // ----------------------
 // 以下はjQueryの記述

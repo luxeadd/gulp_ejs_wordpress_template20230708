@@ -12,12 +12,13 @@ const baseMeta = {
 <html lang="ja">
 <%- include(baseMeta.path + 'common/_head', { baseMeta:baseMeta } ) %>
 
-<body>
+<body id="top">
   <main>
     <!-- ヘッダー -->
     <%- include(baseMeta.path + 'common/_header', { baseMeta:baseMeta } ) %>
 
-    <%- include(baseMeta.path +'common/_picture', 
+    <div class="p-mv">
+      <%- include(baseMeta.path +'common/_picture', 
       { 
         baseMeta:baseMeta, 
         img:'common/image1', 
@@ -28,6 +29,60 @@ const baseMeta = {
         lazy:'true', 
       }
     ) %>
+    </div>
+
+    <section class="p-sec" id="sec1">
+      <%- include(baseMeta.path +'common/_picture', 
+      { 
+        baseMeta:baseMeta, 
+        img:'common/image1', 
+        file:'.jpg', 
+        sp:'-sp', 
+        alt:'ダミー画像', 
+        async:'true', 
+        lazy:'true', 
+      }
+    ) %>
+    </section>
+    <section class="p-sec" id="sec2">
+      <%- include(baseMeta.path +'common/_picture', 
+      { 
+        baseMeta:baseMeta, 
+        img:'common/image1', 
+        file:'.jpg', 
+        sp:'-sp', 
+        alt:'ダミー画像', 
+        async:'true', 
+        lazy:'true', 
+      }
+    ) %>
+    </section>
+    <section class="p-sec" id="sec3">
+      <%- include(baseMeta.path +'common/_picture', 
+      { 
+        baseMeta:baseMeta, 
+        img:'common/image1', 
+        file:'.jpg', 
+        sp:'-sp', 
+        alt:'ダミー画像', 
+        async:'true', 
+        lazy:'true', 
+      }
+    ) %>
+    </section>
+    <section class="p-sec" id="sec4">
+      <%- include(baseMeta.path +'common/_picture', 
+      { 
+        baseMeta:baseMeta, 
+        img:'common/image1', 
+        file:'.jpg', 
+        sp:'-sp', 
+        alt:'ダミー画像', 
+        async:'true', 
+        lazy:'true', 
+      }
+    ) %>
+    </section>
 
   </main>
   <!-- ページトップボタン -->

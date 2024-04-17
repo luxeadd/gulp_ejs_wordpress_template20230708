@@ -31,11 +31,11 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> id="top">
   <?php wp_body_open(); ?>
 
   <?php $urls = get_my_urls(); ?>
-  <header class="l-header p-header js-header">
+  <header class="l-header p-header js-header" data-fixed-header>
     <div class="p-header__inner">
       <!-- ヘッダーロゴ -->
       <?php if (is_front_page()) : ?>
