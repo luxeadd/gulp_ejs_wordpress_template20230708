@@ -51,11 +51,15 @@ body {
   color: $base-color;
   font-family: $base-font-family;
   font-weight: $normal;
-  background: $base-background;
   line-height: 1.5;
+  background: $base-background;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: strict;
 }
 
-a {
+a,
+button {
   &:focus-visible {
     outline: 2px solid #007bff;
   }
