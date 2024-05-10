@@ -1,9 +1,9 @@
 name: Staging Deploy # テスト環境へのデプロイ
 
-# on:                     # トリガーの設定
-#   push:                 # プッシュ時に実行
-#     branches: [main]    # ブランチの指定
-#   workflow_dispatch:
+on:                     # トリガーの設定
+  push:                 # プッシュ時に実行
+    branches: [main]    # ブランチの指定
+  workflow_dispatch:
       
 jobs:
   deploy:
