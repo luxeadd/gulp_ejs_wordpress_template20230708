@@ -21,68 +21,41 @@ const baseMeta = {
       <%- include(baseMeta.path +'common/_picture', 
       { 
         baseMeta:baseMeta, 
-        img:'common/image1', 
-        file:'.jpg', 
-        sp:'-sp', 
-        alt:'ダミー画像', 
-        async:'true', 
-        lazy:'true', 
+        img : 'common/image1', 
+        spImg : 'true', 
+        spImgName : '_sp', 
+        file : '.jpg',  
+        alt : 'ダミー画像', 
+        webp : 'true',
+        pcWidth : '800',
+        pcHeight : '800',
+        spWidth : '300',
+        spHeight : '300',
+        async : 'true', 
+        lazy : 'true', 
       }
     ) %>
     </div>
 
-    <section class="p-sec" id="sec1">
+    <div id="sec1" class="p-mv">
       <%- include(baseMeta.path +'common/_picture', 
       { 
         baseMeta:baseMeta, 
-        img:'common/image1', 
-        file:'.jpg', 
-        sp:'-sp', 
-        alt:'ダミー画像', 
-        async:'true', 
-        lazy:'true', 
+        img : 'common/image1', 
+        spImg : 'true', 
+        spImgName : '_sp', 
+        file : '.jpg',  
+        alt : 'ダミー画像', 
+        webp : 'true',
+        pcWidth : '800',
+        pcHeight : '800',
+        spWidth : '300',
+        spHeight : '300',
+        async : 'true', 
+        lazy : 'true', 
       }
     ) %>
-    </section>
-    <section class="p-sec" id="sec2">
-      <%- include(baseMeta.path +'common/_picture', 
-      { 
-        baseMeta:baseMeta, 
-        img:'common/image1', 
-        file:'.jpg', 
-        sp:'-sp', 
-        alt:'ダミー画像', 
-        async:'true', 
-        lazy:'true', 
-      }
-    ) %>
-    </section>
-    <section class="p-sec" id="sec3">
-      <%- include(baseMeta.path +'common/_picture', 
-      { 
-        baseMeta:baseMeta, 
-        img:'common/image1', 
-        file:'.jpg', 
-        sp:'-sp', 
-        alt:'ダミー画像', 
-        async:'true', 
-        lazy:'true', 
-      }
-    ) %>
-    </section>
-    <section class="p-sec" id="sec4">
-      <%- include(baseMeta.path +'common/_picture', 
-      { 
-        baseMeta:baseMeta, 
-        img:'common/image1', 
-        file:'.jpg', 
-        sp:'-sp', 
-        alt:'ダミー画像', 
-        async:'true', 
-        lazy:'true', 
-      }
-    ) %>
-    </section>
+    </div>
 
   </main>
   <!-- ページトップボタン -->
