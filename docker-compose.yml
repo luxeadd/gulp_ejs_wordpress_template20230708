@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: mysql8 # コンテナ名を指定（複数のインスタンスで衝突を避けるため）※新規プロジェクト変更必要、例：container_name: mysql8
+    image: mysql:latest # 使用するMySQLのイメージ。バージョン指定も可能（例：mysql:8.0）
+    volumes:
+      - db_data8:/var/lib/mysql # データベースファイルを永続化するためのボリュームマッピング ※新規プロジェクト変更必要、例：db_data8:/var/lib/mysql
+    # restart: always # コンテナが停止した場合に自動的に再起動する
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword # MySQLのrootユーザーのパスワード ※新規プロジェクト変更必要、例：MYSQL_ROOT_PASSWORD: newpassword
+      MYSQL_DATABASE: wordpress # データベース名 ※新規プロジェクト変更必要、例：MYSQL_DATABASE: newprojectdb
+      MYSQL_USER: wordpress # データベースユーザー名 ※新規プロジェクト変更必要、例：MYSQL_USER: newuser
+      MYSQL_PASSWORD: wordpress # データベースユーザ-パスワード ※新規プロジェクト変更必要、例：MYSQL_PASSWORD: newpassword
+  
+  phpmyadmin:
+    container_name: phpmyadmin8 # phpMyAdminのコンテナ名 ※新規プロジェクト変更必要、例：container_name: phpmyadmin8
+    image: phpmyadmin/phpmyadmin:latest # 使用するphpMyAdminのイメージ
+    # restart: always # コンテナが停止した場合に自動的に再起動する
+    depends_on:
+      - db # 設定したdbに依存
+    ports:
+      - "9051:80"  #localhostポート ※新規プロジェクト変更必要、例：ports: "9051:80"
+
+  wordpress:
+    container_name: wordpress8 # WordPressのコンテナ名 ※新規プロジェクト変更必要、例：container_name: wordpress8
+    depends_on:
+      - db ## 設定したdbに依存
+    build:
+      context: . # Dockerfileのディレクトリを指定
+      dockerfile: dockerfile # 使用するDockerfileの名前
+    image: wordpress:custom_8 # この設定でビルドされるカスタムイメージのタグ ※新規プロジェクト変更必要、例：image: wordpress:newcustom
+    environment:
+      WORDPRESS_DB_HOST: db:3306 # WordPressが使用するデータベースホストとポート
+      WORDPRESS_DB_NAME: wordpress # データベース名 (db設定分と合わせる) ※新規プロジェクト変更必要、例：WORDPRESS_DB_NAME: newdbname
+      WORDPRESS_DB_USER: wordpress # データベースユーザー名 (db設定分と合わせる) ※新規プロジェクト変更必要、例：WORDPRESS_DB_USER: newuser
+      WORDPRESS_DB_PASSWORD: wordpress # データベースパスワード (db設定分と合わせる) ※新規プロジェクト変更必要、例：WORDPRESS_DB_PASSWORD: newpassword
+    volumes:
+      - wordpress_data8:/var/www/html # WordPressのデータを永続化するためのボリュームマッピング ※新規プロジェクト変更必要、例：wordpress_data_project2:/var/www/html
+      - ./my-themes:/var/www/html/wp-content/themes/ # 自身のテーマのディレクトリと共有
+      - ./wp-install.sh:/tmp/wp-install.sh # インストールスクリプトを共有
+    ports:
+      - "9050:80" #localhostポート ※新規プロジェクト変更必要、例：ports: "9051:80"
+    # restart: always # コンテナが停止した場合に自動的に再起動する
+    
+volumes:
+  db_data8: # MySQLデータ用の永続ボリューム ※新規プロジェクト変更必要、dbで指定したものと同じにする、例：db_data_project2
+  wordpress_data8: # WordPressデータ用の永続ボリューム ※新規プロジェクト変更必要、wordpressで指定したものと同じにする、例：wordpress_data_project2
+

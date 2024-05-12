@@ -24,22 +24,24 @@ const replace = require("gulp-replace"); // 文字列や正規表現による置
 //---------------------------------------------------------------------
 //      初期設定
 // --------------------------------------------------------------------
-//[必須！！！！！] コンパイル設定 ejsを使う場合は[ejs]、WordPressを使う場合は[wp]を指定
-const compilingSet = "ejs";
-// WordPressの場合ローカル環境のプロジェクト名とテーマ名を指定
-const wpProject = "gulp-test";
+//[必須！！！！！] コンパイル設定 ejs or wp
+const compilingSet = "wp";
+// WordPressの場合は開発環境とプロジェクト名とテーマ名を指定
+const wpDevSet = "local"; //local or mamp or docker
+const wpProject = "test3";
 const wpThemeName = "test"; //style.cssのテーマ名も変更すること
-const wpLocalUrl = "http://gulp-test.local/"; //ローカル環境のURL
+const wpLocalUrl = "http://localhost:9010/"; //ローカル環境のURLを設定
 //出力先のWordPressテーマのフォルダパス
-//Local
-const wpFolder =
-  process.env.BASE_FOLDER ||
-  `/Users/kounosatoshi/Local Sites/${wpProject}/app/public/wp-content/themes/${wpThemeName}`;
-//MAMP
-// const wpFolder = process.env.BASE_FOLDER || `/Users/kounosatoshi/Desktop/mamp/${wpProject}/wp-content/themes/${wpThemeName}`;
-//docker
-// const wpFolder = process.env.BASE_FOLDER || `/Users/kounosatoshi/Desktop/docker/${wpProject}/wordpress/wp-content/themes/${wpThemeName}`;
-// -----------------------------------------------------------------------
+
+let wpFolder;
+if (wpDevSet === "local") {
+  wpFolder = process.env.BASE_FOLDER || `/Users/kounosatoshi/Local Sites/${wpProject}/app/public/wp-content/themes/${wpThemeName}`;
+} else if (wpDevSet === "mamp") {
+  wpFolder = process.env.BASE_FOLDER || `/Users/kounosatoshi/Desktop/mamp/${wpProject}/wp-content/themes/${wpThemeName}`;
+} else if (wpDevSet === "docker") {
+  wpFolder = process.env.BASE_FOLDER || `/Users/kounosatoshi/Desktop/docker/${wpProject}/my-themes/${wpThemeName}`;
+}
+
 
 // 読み込み元
 const srcPath = {

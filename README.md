@@ -1,6 +1,7 @@
 ## ファイルの特徴
 - EJS兼WordPress用コーディングファイル
 - src内の情報は静的ページ（dist）に反映される
+- WordPressの場合は指定のthemesへ反映
 
 
 ## ファイル構成  
@@ -19,11 +20,16 @@
 　　∟ base ・・・リセット系    
 　　∟ utility ・・・共通SCSS  
 　　∟ object ・・・FLOCSS対応  
-　　∟ style.css ・・・インクルード用CSS  
+　　∟ style.scss ・・・インクルード用SCSS  
+　　∟ WordPress ・・・WordPress関係ファイル  
+（使用する場合はgulpfile.jsを　　WordPress用に編集すること）  
 
-∟ WordPressTheme ・・・WordPress関係ファイル（使用する場合はgulpfile.jsをWordPress用に編集すること） 
+∟ _gulp ・・・gulpファイル格納用  
+∟ .github ・・・GitHub Actions用ymlファイル  
+∟ docker-compose ・・・docker・WordPress設定用  
+∟ dockerfile ・・・docker・wp-cliインストール用  
+∟ wp-install.sh ・・・wp-cliコマンド実行用  
 
-∟ _gulp ・・・gulpファイル格納用 
 
 
 ## このコーディングファイルの使い方
@@ -128,4 +134,34 @@ WordPress
     get_template_part('tmp/picture', null, $args);
 ?>
 ```
-# gulp_ejs_wordpress_template20230708
+
+## docker起動について
+
+- docker-compose.ymlの更新箇所を変更
+- wp-install.shのWordPressローカルポートをdocker-compose.yml記載のポートに合わせる
+- gulp.jsのWordPressローカルポートをdocker-compose.yml記載のポートに合わせる
+
+- docker起動 
+```
+docker-compose up -d
+```
+
+- インストールしたWordPressに入る 
+```
+docker exec -it 設定したWordPressのcontainer_name /bin/bash
+```
+
+- /tmp/wp-install.shのコマンドを許可
+```
+chmod +x /tmp/wp-install.sh
+```
+
+- wp-install.sh記載のコマンドを実行
+```
+/tmp/wp-install.sh
+```
+
+- 設定を変えた場合はdocker再起動
+```
+docker-compose up -d --build
+```
