@@ -38,7 +38,9 @@
 
 - 使用環境
 - 使い方および操作方法
-- 注意点
+- 注意点 
+- 画像出力について 
+- docker・wp-cli設定について
 ## 使用環境
 - Node.js バージョン14系以上
 - npm バージョン8以上
@@ -100,15 +102,21 @@ const wpFolder =
 EJS
 
 ```
-<%- include(baseMeta.path +'common/_picture',
-  {
-    baseMeta:baseMeta,
-    img:'common/image1',
-    file:'.jpg',
-    sp:'-sp',
-    alt:'ダミー画像',
-    async:'true',
-    lazy:'true',
+<%- include(baseMeta.path +'common/_picture', 
+  { 
+    baseMeta:baseMeta, 
+    img:'common/image1', 
+    spImg:'true', 
+    spImgName:'_sp', 
+    file:'.jpg',  
+    alt:'ダミー画像', 
+    webp:'true',
+    pcWidth : '800',
+    pcHeight : '800',
+    spWidth : '300',
+    spHeight : '300',
+    async:'true', 
+    lazy:'true', 
   }
 ) %>
 ```
