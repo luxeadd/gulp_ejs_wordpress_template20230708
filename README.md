@@ -1,7 +1,7 @@
 ## ファイルの特徴
 - EJS兼WordPress用コーディングファイル
-- src内の情報は静的ページ（dist）に反映される
-- WordPressの場合は指定のthemesへ反映
+- src内の情報は静的ページ（dist）に反映される、WordPressの場合は指定のthemesへ反映
+- GitHubActions自動デプロイ、docker・wp-cli対応
 
 
 ## ファイル構成  
@@ -137,8 +137,9 @@ WordPress
 
 ## docker起動について
 
-- docker-compose.ymlの更新箇所を変更
-- wp-install.shのWordPressローカルポートをdocker-compose.yml記載のポートに合わせる
+- docker-compose.yml：更新箇所を変更 ※コンテナNo、ポートNo、Volume
+- wp-install.sh：WordPressローカルポートをdocker-compose.yml記載のポートに合わせる
+- wp-install.sh：ログイン情報更新
 - gulp.jsのWordPressローカルポートをdocker-compose.yml記載のポートに合わせる
 
 - docker起動 
@@ -148,7 +149,8 @@ docker-compose up -d
 
 - インストールしたWordPressに入る 
 ```
-docker exec -it 設定したWordPressのcontainer_name /bin/bash
+docker exec -it WordPressコンテナネーム /bin/bash
+docker exec -it wordpress_09 /bin/bash
 ```
 
 - /tmp/wp-install.shのコマンドを許可
@@ -164,4 +166,19 @@ chmod +x /tmp/wp-install.sh
 - 設定を変えた場合はdocker再起動
 ```
 docker-compose up -d --build
+```
+- データベースのエクスポート
+```
+docker exec -it [MySQLコンテナ名] mysqldump -u [ユーザー名] -p[パスワード] [データベース名] > wordpress_db.sql
+```
+```
+docker exec -it mysql_9 mysqldump -u wordpress -p wordpress wordpress > wordpress_db.sql
+```
+
+- WordPressのエクスポート
+```
+docker cp [WordPressコンテナ名]:/var/www/html/wp-content ./wp-content
+```
+```
+docker cp wordpress_9:/var/www/html/wp-content ./wp-content
 ```

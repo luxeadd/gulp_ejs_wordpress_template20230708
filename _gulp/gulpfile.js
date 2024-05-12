@@ -30,7 +30,7 @@ const compilingSet = "wp";
 const wpDevSet = "local"; //local or mamp or docker
 const wpProject = "test3";
 const wpThemeName = "test"; //style.cssのテーマ名も変更すること
-const wpLocalUrl = "http://localhost:9010/"; //ローカル環境のURLを設定
+const wpLocalUrl = "http://localhost:9090/"; //ローカル環境のURLを設定
 //出力先のWordPressテーマのフォルダパス
 
 let wpFolder;

@@ -3,7 +3,7 @@
 # WordPressセットアップ admin_user,admin_passwordは管理画面のログインID,PW
 ## urlはdocker-compose.ymlで設定したWordPressのポート番号を指定
 wp core install \
---url='http://localhost:9050' \
+--url='http://localhost:9090' \
 --title='テスト' \
 --admin_user='test' \
 --admin_password='test' \
