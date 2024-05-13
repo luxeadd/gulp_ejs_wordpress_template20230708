@@ -26,22 +26,17 @@ wp plugin delete hello.php --allow-root
 wp plugin delete akismet --allow-root
 
 # プラグインのインストール (必要に応じてコメントアウトを外す)
+wp plugin install query-monitor --activate --allow-root
 wp plugin install wp-multibyte-patch --activate --allow-root
-# wp plugin install backwpup --activate --allow-root
-# wp plugin install siteguard --activate --allow-root
-# wp plugin install contact-form-7 --activate --allow-root
-# wp plugin install wp-mail-smtp --activate --allow-root
-# wp plugin install all-in-one-seo-pack --activate --allow-root
-# wp plugin install broken-link-checker --activate --allow-root
-# wp plugin install addquicktag --activate --allow-root
+wp plugin install custom-post-type-ui --activate --allow-root
+wp plugin install advanced-custom-fields --activate --allow-root
+wp plugin install breadcrumb-navxt --activate --allow-root
+wp plugin install wp-pagenavi --activate --allow-root
+wp plugin install contact-form-7 --activate --allow-root
+wp plugin install admin-bar-position --activate --allow-root
+wp plugin install seo-simple-pack --activate --allow-root
+wp plugin install wpvivid-backuprestore --activate --allow-root
 
-# テーマの削除
-# wp theme delete twentysixteen --allow-root
-# wp theme delete twentyseventeen --allow-root
-# wp theme delete twentynineteen --allow-root
-# wp theme delete twentyfour --allow-root
-# wp theme delete twentythree --allow-root
-# wp theme delete twentytwenty --allow-root
 
 # パーマリンク更新
 wp option update permalink_structure /%post_id%/ --allow-root
