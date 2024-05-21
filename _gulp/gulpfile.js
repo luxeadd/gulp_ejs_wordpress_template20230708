@@ -25,9 +25,9 @@ const replace = require("gulp-replace"); // 文字列や正規表現による置
 //      初期設定
 // --------------------------------------------------------------------
 //[必須！！！！！] コンパイル設定 ejs or wp
-const compilingSet = "wp";
+const compilingSet = "ejs";
 // WordPressの場合は開発環境とプロジェクト名とテーマ名を指定
-const wpDevSet = "local"; //local or mamp or docker
+const wpDevSet = ""; //local or mamp or docker
 const wpProject = "test3";
 const wpThemeName = "test"; //style.cssのテーマ名も変更すること
 const wpLocalUrl = "http://localhost:9090/"; //ローカル環境のURLを設定

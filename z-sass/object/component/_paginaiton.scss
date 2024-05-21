@@ -17,11 +17,11 @@
     width: rem(80);
     aspect-ratio: 1;
     border-radius: 50%;
-    color: var(--base-color);
+    color: $base-color;
     background: #fff;
     border: 1px solid #ccc;
     font-size: rem(16);
-    font-weight: var(--bold);
+    font-weight: $bold;
     transition: all 0.3s ease;
 
     @include mq(md) {
@@ -32,7 +32,7 @@
 
     @media (hover: hover) {
       &:hover {
-        background: var(--base-color);
+        background: $base-color;
         color: #fff;
         &.prev,
         &.next {
@@ -45,7 +45,7 @@
     }
   }
   .current {
-    background: var(--base-color);
+    background: $base-color;
     color: #fff;
   }
   .prev,

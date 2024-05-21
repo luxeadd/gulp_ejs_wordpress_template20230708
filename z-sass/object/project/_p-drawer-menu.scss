@@ -13,7 +13,7 @@
     width: 100%;
     height: calc(100% - rem(80));
     overflow-y: scroll;
-    z-index: var(--drawer);
+    z-index: $drawer;
     background: #ccc;
     opacity: 0;
     visibility: hidden;
@@ -32,18 +32,19 @@
   height: initial;
   display: block;
   padding-block: rem(135) rem(100);
-  padding-inline: var(--padding-pc);
+  padding-inline: $padding-pc;
   width: 100%;
+  max-width: 800px + strip-unit($padding-pc) * 2;
   margin-inline: auto;
 
   @include mq(md) {
     padding-block: rem(50) rem(100);
-    padding-inline: var(--padding-sp);
+    padding-inline: $padding-sp;
   }
 }
 
 .p-drawer-menu__item {
-  border-bottom: 1px solid var(--white);
+  border-bottom: 1px solid $white;
 
   a {
     display: block;
@@ -73,7 +74,7 @@
       width: rem(20);
       flex: 0 0 rem(20);
       height: rem(29);
-      background: var(--black);
+      background: $black;
       clip-path: polygon(0 0, 0% 100%, 100% 50%);
 
       @include mq(md) {
@@ -96,7 +97,7 @@
     display: block;
     min-height: rem(80);
     font-size: rem(22);
-    color: var(--white);
+    color: $white;
     display: flex;
     align-items: center;
     text-align: left;

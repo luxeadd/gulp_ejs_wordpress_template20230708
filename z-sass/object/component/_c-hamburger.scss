@@ -1,9 +1,8 @@
 @use "global" as *;
+$hamburger-color1: $white; //通常時ボタンカラー
+$hamburger-color2: $white; //展開時ボランカラー
 
 .c-hamburger {
-  --hamburger-color1: var(--white);
-  --hamburger-color2: var(--white);
-
   @include mq(md) {
     display: inline-block;
     text-decoration: none;
@@ -11,7 +10,7 @@
     -moz-appearance: none;
     appearance: none;
     border: none;
-    background: var(--black);
+    background: $base-color;
     cursor: pointer;
     -webkit-transition: all 0.3s ease-in-out;
     transition: background 0.3s ease;
@@ -24,10 +23,10 @@
 
 @media (hover: hover) {
   .c-hamburger:hover {
-    background: var(--black);
+    background: $black;
 
     .c-hamburger__line {
-      background: var(--hamburger-color2);
+      background: $hamburger-color2;
     }
     &[aria-expanded="true"] {
       .c-hamburger__line {
@@ -45,7 +44,7 @@
   transform: translate(-50%, -50%);
   width: rem(20);
   height: 1px;
-  background: var(--hamburger-color1);
+  background: $hamburger-color1;
   transition: background 0.3s ease;
 }
 
@@ -67,7 +66,7 @@
   top: rem(6);
 }
 .c-hamburger[aria-expanded="true"] {
-  background: var(--black);
+  background: $black;
 
   .c-hamburger__line {
     background: transparent;
@@ -75,7 +74,7 @@
     &::before,
     &::after {
       top: 0;
-      background: var(--hamburger-color2);
+      background: $hamburger-color2;
     }
   }
   .c-hamburger__line::before {

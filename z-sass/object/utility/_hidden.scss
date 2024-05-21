@@ -1,0 +1,24 @@
+@use "global" as *;
+
+/* 背景固定用CSS */
+body:has(.c-hamburger.is_active) {
+  @include mq(md) {
+    overflow: hidden;
+  }
+}
+
+//768px以上非表示
+.u-hidden-pc {
+  display: none;
+  @include mq("md") {
+    display: block;
+  }
+}
+
+//モバイル非表示
+.u-hidden-sp {
+  display: block;
+  @include mq("md") {
+    display: none;
+  }
+}

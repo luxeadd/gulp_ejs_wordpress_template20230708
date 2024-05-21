@@ -1,61 +1,47 @@
 @use "sass:math";
 
-// インナー幅設定
-// コンテンツのインナー幅（最も共通の幅が多い部分）
 $inner: 1100px;
-// ※キュンパス幅ではなくインナーの幅を指す
 
-// 余白
-$padding-pc: 25px;
-$padding-sp: 20px;
-
-/********************************
-* フォント
-********************************/
-$base-font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
-  "Hiragino Sans", Meiryo, sans-serif;
-// $base-font-family: "Noto Serif JP", serif;
-// $sub-font-family: "Zen Maru Gothic", sans-serif;
-
-// フォントウェイト
-$light: 300;
-$normal: 400;
-$medium: 500;
-$semi-bold: 600;
-$bold: 700;
-$ex-bold: 800;
-
-/********************************
-* カラー
-********************************/
-$base-color: #666;
-$base-background: #fff;
-$back: #333;
-$black: #333;
-$white: #fff;
-$btn-fucus: #fff;
-
-/********************************
-* z-index
-********************************/
-$header: 100;
-$hamburger: 103;
-$drawer: 102;
-$drawer-back: 101;
-$page-top: 99;
+:root {
+  // インナー幅設定
+  --inner: 1100px;
+  --padding-pc: 25px;
+  --padding-sp: 20px;
+  // フォントウェイト
+  --light: 300;
+  --normal: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
+  --ex-bold: 800;
+  //フォントファミリー
+  --base-font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  //カラー
+  --base-color: #666;
+  --base-background: #fff;
+  --back: #333;
+  --black: #333;
+  --white: #fff;
+  --btn-fucus: #fff;
+  //z-index
+  --header: 100;
+  --hamburger: 103;
+  --drawer: 102;
+  --drawer-back: 101;
+  --page-top: 99;
+  //ラインハイト
+  --base-line-height: 1.5;
+}
 
 /********************************
 * セッティング反映
 ********************************/
 body {
-  color: $base-color;
-  font-family: $base-font-family;
-  font-weight: $normal;
-  line-height: 1.5;
-  background: $base-background;
-  overflow-wrap: anywhere;
-  word-break: normal;
-  line-break: strict;
+  color: var(--base-color);
+  font-family: var(--base-font-family);
+  font-weight: var(--normal);
+  line-height: var(--base-line-height);
+  background: var(--base-background);
 }
 
 a,

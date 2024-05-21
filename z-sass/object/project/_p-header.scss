@@ -2,13 +2,13 @@
 
 .p-header {
   height: rem(100);
-  background: var(--white);
+  background: $white;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: var(--header);
+  z-index: $header;
   display: flex;
   transition: background 0.3s ease;
 
@@ -68,7 +68,7 @@
   @include mq(md) {
     display: grid;
     place-content: center;
-    z-index: var(--hamburger);
+    z-index: $hamburger;
     position: relative;
 
   }
