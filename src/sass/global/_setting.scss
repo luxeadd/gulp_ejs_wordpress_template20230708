@@ -1,10 +1,12 @@
 @use "sass:math";
 
-$inner: 1100px;
+// インナー幅設定
+$innerValue: 1100;
+$inner: calc($innerValue * 1px);
 
 :root {
-  // インナー幅設定
-  --inner: 1100px;
+  --innerValue: #{$innerValue};
+  --inner: #{$inner};
   --padding-pc: 25px;
   --padding-sp: 20px;
   // フォントウェイト
