@@ -4,8 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Remove default padding */
-
 ul,
 ol {
   padding: 0;
@@ -15,7 +13,6 @@ li {
   list-style: none;
 }
 
-/* Remove default margin */
 body,
 h1,
 h2,
@@ -31,12 +28,14 @@ dd {
   margin: 0;
 }
 
-/* Set core root defaults */
 html {
+  // スムーススクロール
   // scroll-behavior: smooth;
+  // スマートフォン横向き時のテキストの拡大を防ぐ
+  -webkit-text-size-adjust: 100%; /* Safariではまだベンダープレフィックスが必要 */
+  text-size-adjust: 100%;
 }
 
-/* Set core body defaults */
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
@@ -52,25 +51,21 @@ main {
   flex: 1;
 }
 
-/* Remove list styles on ul, ol elements with a class attribute */
 ul,
 ol {
-  list-style: none;
+  list-style-type: '';
 }
 
-/* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-/* Make images easier to work with */
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-/* Inherit fonts for inputs and buttons */
 input,
 button,
 textarea,
@@ -82,11 +77,15 @@ textarea {
   resize: vertical;
 }
 
+button,
 input[type="submit"],
 input[type="button"],
+input[type="reset"],
+select,
 label,
-button,
-select {
+summary,
+[role='tab'],
+[role='button'] {
   cursor: pointer;
 }
 

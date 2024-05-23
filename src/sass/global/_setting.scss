@@ -46,6 +46,7 @@ body {
   background: var(--base-background);
 }
 
+// フォーカス時設定
 a,
 button {
   &:focus-visible {

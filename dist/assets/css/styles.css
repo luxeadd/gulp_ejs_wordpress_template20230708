@@ -66,8 +66,6 @@ html {
 	box-sizing: border-box;
 }
 
-/* Remove default padding */
-
 ul,
 ol {
 	padding: 0;
@@ -76,8 +74,6 @@ ol {
 li {
 	list-style: none;
 }
-
-/* Remove default margin */
 
 body,
 h1,
@@ -94,9 +90,11 @@ dd {
 	margin: 0;
 }
 
-/* Set core root defaults */
-
-/* Set core body defaults */
+html {
+	-webkit-text-size-adjust: 100%; /* Safariではまだベンダープレフィックスが必要 */
+	-moz-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
 
 body {
 	word-wrap: anywhere;
@@ -113,29 +111,21 @@ main {
 	flex: 1;
 }
 
-/* Remove list styles on ul, ol elements with a class attribute */
-
 ul,
 ol {
-	list-style: none;
+	list-style-type: "";
 }
-
-/* A elements that don't have a class get default styles */
 
 a:not([class]) {
 	-webkit-text-decoration-skip: ink;
 	text-decoration-skip-ink: auto;
 }
 
-/* Make images easier to work with */
-
 img {
 	display: block;
 	height: auto;
 	max-width: 100%;
 }
-
-/* Inherit fonts for inputs and buttons */
 
 input,
 button,
@@ -148,11 +138,15 @@ textarea {
 	resize: vertical;
 }
 
+button,
 input[type=submit],
 input[type=button],
+input[type=reset],
+select,
 label,
-button,
-select {
+summary,
+[role=tab],
+[role=button] {
 	cursor: pointer;
 }
 
