@@ -20,6 +20,7 @@ const del = require("del"); // ファイルやディレクトリを削除する�
 const webp = require("gulp-webp"); //webp変換
 const rename = require("gulp-rename"); //ファイル名変更
 const replace = require("gulp-replace"); // 文字列や正規表現による置換
+const zip = require("gulp-zip");
 
 //---------------------------------------------------------------------
 //      初期設定
@@ -33,6 +34,7 @@ const wpThemeName = "test"; //style.cssのテーマ名も変更すること
 const wpLocalUrl = "http://localhost:9090/"; //ローカル環境のURLを設定
 //出力先のWordPressテーマのフォルダパス
 
+// WordPressの場合の出力先
 let wpFolder;
 if (wpDevSet === "local") {
   wpFolder = process.env.BASE_FOLDER || `/Users/kounosatoshi/Local Sites/${wpProject}/app/public/wp-content/themes/${wpThemeName}`;
@@ -271,6 +273,20 @@ const watchFiles = () => {
   watch(srcPath.wp, series(wpCopy, browserSyncReload));
 };
 
+// ファイルの圧縮
+const archive = () => {
+  const now = new Date();
+  const year = now.getFullYear().toString().slice(-2);
+  const month = ("0" + (now.getMonth() + 1)).slice(-2);
+  const day = now.getDate().toString().slice(-2);
+
+  const yymmdd = year + month + day;
+
+  return src(destPath.all)
+    .pipe(zip(`${yymmdd}_name.zip`))
+    .pipe(dest("../zip-files/"));
+};
+
 // タスクの実行
 if (compilingSet === "ejs") {
   exports.default = series(
@@ -278,10 +294,12 @@ if (compilingSet === "ejs") {
     parallel(watchFiles, browserSyncFunc)
   );
   exports.build = series(clean, cssSass, jsBabel, imgImagemin, ejsCompile);
+  exports.zip = archive;
 } else if (compilingSet === "wp") {
   exports.default = series(
     series(cssSass, jsBabel, imgImagemin, wpCopy),
     parallel(watchFiles, browserSyncFunc)
   );
   exports.build = series(clean, cssSass, jsBabel, imgImagemin, wpCopy);
+  exports.zip = archive;
 }
