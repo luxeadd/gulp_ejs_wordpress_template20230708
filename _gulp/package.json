@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx gulp default",
-    "build": "npx gulp build"
+    "build": "npx gulp build",
+    "zip": "npx gulp zip"
   },
   "keywords": [],
   "author": "",
