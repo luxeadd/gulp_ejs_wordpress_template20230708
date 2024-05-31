@@ -37,9 +37,8 @@ for (let a = 0; a < drawerMenuItems.length - 1; a++) {
 // ----------------------
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
-    jsHamburger.classList.remove("is_active");
+    hamburger.classList.remove("is_active");
     spHeaderMenu.classList.remove("is_active");
-    screenUnLock();
   }
 });
 
