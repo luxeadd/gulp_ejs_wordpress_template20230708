@@ -906,11 +906,17 @@ button {
 	z-index: 2;
 }
 
+:root {
+	--header-height: rem(100);
+	--header-height-sp: rem(80);
+}
+
 .p-header {
 	background: #fff;
 	background: var(--white);
 	display: flex;
-	height: calc(100 / 16 * 1rem);
+	height: rem(100);
+	height: var(--header-height);
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -1027,6 +1033,7 @@ dialog:not([open]) {
 }
 
 .p-headSec {
+	padding-top: rem(100);
 	padding-top: var(--header-height);
 }
 
@@ -1236,7 +1243,8 @@ html {
 	pointer-events: none;
 	position: fixed;
 	right: 0;
-	top: calc(80 / 16 * 1rem);
+	top: rem(100);
+	top: var(--header-height);
 	transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-clip-path 0.3s ease;
 	transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease;
 	transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
@@ -1318,7 +1326,8 @@ html {
 }
 
 .p-header {
-	height: calc(80 / 16 * 1rem);
+	height: rem(80);
+	height: var(--header-height-sp);
 }
 
 .p-header__inner {
@@ -1374,6 +1383,7 @@ body:has(.c-hamburger.is_active) {
 }
 
 .p-headSec {
+	padding-top: rem(80);
 	padding-top: var(--header-height-sp);
 }
 

@@ -6,7 +6,7 @@
   @include mq(md) {
     display: block;
     position: fixed;
-    top: rem(80);
+    top: var(--header-height);
     bottom: 0;
     right: 0;
     left: 0;

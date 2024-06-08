@@ -189,25 +189,56 @@ const imgImagemin = () => {
 };
 
 // js
-const jsBabel = () => {
-  // JavaScriptファイルを指定
-  return (
-    src(srcPath.js)
-      // エラーハンドリングを設定
-      .pipe(
-        plumber({
-          errorHandler: notify.onError("Error: <%= error.message %>"),
-        })
-      )
-      // Babelでトランスパイル（ES6からES5へ変換）
-      .pipe(
-        babel({
-          presets: ["@babel/preset-env"],
-        })
-      )
-      // 圧縮済みのファイルを出力先に保存
-      .pipe(dest(destPath.js))
-  );
+// const jsBabel = () => {
+//   // JavaScriptファイルを指定
+//   return (
+//     src(srcPath.js)
+//       // エラーハンドリングを設定
+//       .pipe(
+//         plumber({
+//           errorHandler: notify.onError("Error: <%= error.message %>"),
+//         })
+//       )
+//       // Babelでトランスパイル（ES6からES5へ変換）
+//       .pipe(
+//         babel({
+//           presets: ["@babel/preset-env"],
+//         })
+//       )
+//       // 圧縮済みのファイルを出力先に保存
+//       .pipe(dest(destPath.js))
+//   );
+// };
+
+const path = require('path');
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
+const webpackConfig = require('./webpack.config.js');
+const filter = require("gulp-filter"); // ストリーム内のファイルをフィルタリング
+const vinylNamed = require("vinyl-named"); // エントリーポイントに名前
+
+// JavaScriptのバンドル
+const jsBundle = () => {
+  return src(srcPath.js)
+    .pipe(
+      plumber({
+        errorHandler: notify.onError("Error: <%= error.message %>"), // エラーがある場合、通知を出す
+      })
+    )
+    .pipe(
+      filter(function (file) {
+        return !/\/_/.test(file.path) && !/^_/.test(file.relative); // ファイル名が「_」で始まるものをコンパイルから除外
+      })
+    )
+    .pipe(
+      vinylNamed((file) => {
+        // エントリーポイントに名前を付ける
+        const p = path.parse(file.relative); // ファイルの相対パスを取得
+        return (p.dir ? p.dir + path.sep : "") + p.name; // ファイル名を取得
+      })
+    )
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(dest(destPath.js));
 };
 
 //  EJS
@@ -267,7 +298,7 @@ const clean = () => {
 // ファイルの監視
 const watchFiles = () => {
   watch(srcPath.css, series(cssSass, browserSyncReload));
-  watch(srcPath.js, series(jsBabel, browserSyncReload));
+  watch(srcPath.js, series(jsBundle, browserSyncReload));
   watch(srcPath.img, series(imgImagemin, browserSyncReload));
   watch(srcPath.ejs, series(ejsCompile, browserSyncReload));
   watch(srcPath.wp, series(wpCopy, browserSyncReload));
@@ -290,16 +321,16 @@ const archive = () => {
 // タスクの実行
 if (compilingSet === "ejs") {
   exports.default = series(
-    series(cssSass, jsBabel, imgImagemin, ejsCompile),
+    series(cssSass, jsBundle, imgImagemin, ejsCompile),
     parallel(watchFiles, browserSyncFunc)
   );
-  exports.build = series(clean, cssSass, jsBabel, imgImagemin, ejsCompile);
+  exports.build = series(clean, cssSass, jsBundle, imgImagemin, ejsCompile);
   exports.zip = archive;
 } else if (compilingSet === "wp") {
   exports.default = series(
-    series(cssSass, jsBabel, imgImagemin, wpCopy),
+    series(cssSass, jsBundle, imgImagemin, wpCopy),
     parallel(watchFiles, browserSyncFunc)
   );
-  exports.build = series(clean, cssSass, jsBabel, imgImagemin, wpCopy);
+  exports.build = series(clean, cssSass, jsBundle, imgImagemin, wpCopy);
   exports.zip = archive;
 }

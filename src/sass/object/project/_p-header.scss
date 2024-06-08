@@ -1,7 +1,12 @@
 @use "global" as *;
 
+:root {
+  --header-height: rem(100);
+  --header-height-sp: rem(80);
+}
+
 .p-header {
-  height: rem(100);
+  height: var(--header-height);
   background: var(--white);
   position: fixed;
   top: 0;
@@ -13,7 +18,7 @@
   transition: background 0.3s ease;
 
   @include mq(md) {
-    height: rem(80);
+    height: var(--header-height-sp);
   }
 
   @media print{
