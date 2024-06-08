@@ -22,6 +22,7 @@
 	--drawer-back: 101;
 	--page-top: 99;
 	--base-line-height: 1.5;
+	--duration: 0.3s ease;
 }
 
 /********************************
@@ -98,13 +99,15 @@ html {
 
 body {
 	word-wrap: anywhere;
-	display: flex;
-	flex-direction: column;
 	line-break: strict;
-	line-height: 1.5;
-	min-height: 100vh;
 	text-rendering: optimizeSpeed;
 	word-break: normal;
+}
+
+.siteWrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 main {
@@ -156,6 +159,16 @@ a {
 	text-decoration: none;
 }
 
+button {
+	background-color: transparent;
+	background-color: initial;
+	border: medium none currentColor;
+	border: initial;
+	color: inherit;
+	padding: 0;
+	padding: initial;
+}
+
 :where(button,
 [type=button],
 [type=reset],
@@ -163,9 +176,134 @@ a {
 	touch-action: manipulation;
 }
 
+:where([popover]) {
+	background-color: transparent;
+	background-color: initial;
+	border: medium none currentColor;
+	border: initial;
+	color: inherit;
+	height: auto;
+	height: initial;
+	overflow: visible;
+	overflow: initial;
+	padding: 0;
+	padding: initial;
+	width: auto;
+	width: initial;
+}
+
+:where(dialog) {
+	background-color: transparent;
+	background-color: initial;
+	border: medium none currentColor;
+	border: initial;
+	color: inherit;
+	height: auto;
+	height: initial;
+	margin: 0;
+	margin: initial;
+	max-height: none;
+	max-height: initial;
+	max-width: none;
+	max-width: initial;
+	overflow: visible;
+	overflow: initial;
+	padding: 0;
+	padding: initial;
+	width: auto;
+	width: initial;
+}
+
 /* Blur images when they have no alt attribute */
 
 /* フォームリセット */
+
+.c-accordion {
+	border: 2px solid #666;
+	border: 2px solid var(--base-color);
+	border-radius: 9px;
+	overflow: hidden;
+}
+
+.c-accordion__btn {
+	background: transparent;
+	background: #666;
+	background: var(--base-color);
+	border: 0;
+	color: #fff;
+	color: var(--white);
+	display: block;
+	font-size: calc(19 / 16 * 1rem);
+	margin: 0;
+	padding: 0;
+	padding: calc(23 / 16 * 1rem) calc(75 / 16 * 1rem) calc(23 / 16 * 1rem) calc(47 / 16 * 1rem);
+	position: relative;
+	text-align: left;
+	transition: background 0.3s ease, opacity 0.3s ease;
+	transition: background var(--duration), opacity var(--duration);
+	width: 100%;
+}
+
+.c-accordion__btn::before,
+.c-accordion__btn::after {
+	background: currentColor;
+	border-radius: 10px;
+	content: "";
+	display: block;
+	height: 3px;
+	position: absolute;
+	right: calc(45 / 16 * 1rem);
+	top: 50%;
+	transform-origin: center center;
+	transition: transform 0.3s ease;
+	transition: transform var(--duration);
+	width: calc(27 / 16 * 1rem);
+}
+
+.c-accordion__btn::before {
+	transform: translate(0%, -50%) rotate(90deg);
+}
+
+.c-accordion__btn::after {
+	transform: translate(0%, -50%) rotate(0deg);
+}
+
+.c-accordion__btn[aria-expanded=true]::before {
+	transform: translate(0%, -50%) rotate(0deg);
+}
+
+.c-accordion__body {
+	background: #fff;
+	background: var(--white);
+	display: grid;
+	grid-template-rows: 0fr;
+	padding-left: calc(47 / 16 * 1rem);
+	padding-right: calc(47 / 16 * 1rem);
+	transition: 250ms grid-template-rows ease, 250ms padding-top ease, 250ms padding-bottom ease;
+}
+
+.c-accordion__body > div {
+	overflow: hidden;
+}
+
+.c-accordion__body[aria-hidden=false] {
+	grid-template-rows: 1fr;
+	padding-bottom: calc(30 / 16 * 1rem);
+	padding-top: calc(30 / 16 * 1rem);
+}
+
+.c-accordion__answer {
+	padding-left: 1.5em;
+	position: relative;
+}
+
+.c-accordion__answer::before {
+	content: "A.";
+	display: block;
+	left: 0;
+	position: absolute;
+	top: 0;
+}
 
 .c-btn {
 	-webkit-user-select: none;
@@ -240,6 +378,105 @@ a {
 	transform: rotate(-45deg);
 }
 
+.c-modalMedical {
+	background: #fff;
+	background: var(--white);
+	border: 5px solid #666;
+	border: 5px solid var(--base-color);
+	border-radius: 21px;
+	height: 80vh;
+	margin: auto;
+	width: min(1200px, 90vw);
+}
+
+.c-modalMedical[open] {
+	display: block;
+}
+
+.c-modalMedical {
+	box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+	transition: opacity 0.5s;
+}
+
+.c-modalMedical__container {
+	height: inherit;
+	height: 100%;
+	position: relative;
+}
+
+.c-modalMedical__inner {
+	height: inherit;
+	overflow: scroll;
+	overscroll-behavior: contain;
+	padding: calc(73 / 16 * 1rem) calc(30 / 16 * 1rem);
+}
+
+.c-modalMedical__img {
+	aspect-ratio: 400/248;
+	margin-left: auto;
+	margin-right: auto;
+	width: min(400px, 100%);
+}
+
+.c-modalMedical__img img {
+	-o-object-fit: cover;
+	-o-object-position: center;
+	border-radius: 30px;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+}
+
+.c-modalMedical__head {
+	margin-top: calc(45 / 16 * 1rem);
+}
+
+.c-modalMedical__title {
+	font-size: calc(24 / 16 * 1rem);
+	font-weight: 700;
+	font-weight: var(--bold);
+	text-align: center;
+}
+
+.c-modalMedical__body {
+	margin-top: calc(55 / 16 * 1rem);
+}
+
+.c-modalMedical__close {
+	aspect-ratio: 1/1;
+	background: #fff;
+	background: var(--white);
+	border: 2px solid #a7a7a7;
+	border-radius: 50%;
+	color: #a7a7a7;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transform: translate(-25%, -25%);
+	width: calc(59 / 16 * 1rem);
+}
+
+.c-modalMedical__close::before,
+.c-modalMedical__close::after {
+	background: currentColor;
+	content: "";
+	display: block;
+	height: 3px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	width: 50%;
+}
+
+.c-modalMedical__close::before {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.c-modalMedical__close::after {
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
 .c-page-top {
 	background: #fff;
 	background: var(--white);
@@ -293,6 +530,63 @@ a {
 .c-page-top:hover span {
 	background: #fff;
 	background: var(--white);
+}
+
+.c-panel {
+	align-items: center;
+	background: #fff;
+	background: var(--white);
+	border: 3px solid #666;
+	border: 3px solid var(--base-color);
+	border-radius: 21px;
+	cursor: pointer;
+	display: block;
+	display: flex;
+	flex-direction: column;
+	gap: calc(20 / 16 * 1rem);
+	justify-content: space-around;
+	min-height: calc(237 / 16 * 1rem);
+	padding: calc(30 / 16 * 1rem) calc(10 / 16 * 1rem);
+	transition: opacity 0.3s;
+}
+
+.c-panel__img {
+	width: min(126px, 100%);
+}
+
+.c-panel__text {
+	color: #666;
+	color: var(--base-color);
+	display: block;
+	font-size: calc(19 / 16 * 1rem);
+	font-weight: 700;
+	font-weight: var(--bold);
+	line-height: 1.3157894737;
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+
+.c-panel__text::before,
+.c-panel__text::after {
+	background: #FBA49B;
+	border-radius: 10px;
+	content: "";
+	display: block;
+	height: 2px;
+	position: absolute;
+	right: calc(4 / 16 * 1rem);
+	top: 50%;
+	transform-origin: center right;
+	width: 7px;
+}
+
+.c-panel__text::before {
+	transform: translate(0%, -50%) rotate(45deg);
+}
+
+.c-panel__text::after {
+	transform: translate(0%, -50%) rotate(-45deg);
 }
 
 .pagination {
@@ -384,10 +678,11 @@ a {
 	display: none;
 }
 
-.p-drawer-menu[aria-hidden=false] {
+.p-drawer-menu[aria-hidden=false],
+.p-drawer-menu:popover-open {
 	opacity: 1;
 	pointer-events: auto;
-	visibility: visible;
+	visibility: revert;
 }
 
 .p-drawer-menu__items {
@@ -664,6 +959,30 @@ a {
 	display: none;
 }
 
+.p-panels {
+	grid-gap: calc(65 / 16 * 1rem) calc(48 / 16 * 1rem);
+	display: grid;
+	gap: calc(65 / 16 * 1rem) calc(48 / 16 * 1rem);
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.p-qa {
+	background: var(--color-back-green);
+	padding-top: calc(52 / 16 * 1rem);
+}
+
+.p-qa__head {
+	text-align: center;
+}
+
+.p-qa__body {
+	margin-top: calc(80 / 16 * 1rem);
+}
+
+.p-qa__accordion:nth-child(n+2) {
+	margin-top: calc(25 / 16 * 1rem);
+}
+
 /* 背景固定用CSS */
 
 .u-hidden-pc {
@@ -672,6 +991,55 @@ a {
 
 .u-hidden-sp {
 	display: block;
+}
+
+/* ドロワーメニュー展開時背景固定 */
+
+body:has(dialog[open]) {
+	overflow: hidden;
+}
+
+body {
+	overflow-y: scroll; /* 常にスクロールバーを表示 */
+}
+
+.siteWrapper:has(dialog[open]) {
+	overflow-y: auto;
+	scrollbar-gutter: stable; /* スクロールバーのスペースを常に確保する */
+}
+
+dialog[open] {
+	animation-duration: 200ms;
+	animation-fill-mode: forwards;
+	animation-name: fadeIn;
+	animation-timing-function: ease-out;
+}
+
+dialog:not([open]) {
+	animation-duration: 200ms;
+	animation-fill-mode: forwards;
+	animation-name: fadeOut;
+	animation-timing-function: ease-out;
+}
+
+.siteWrapper {
+	overflow-x: clip;
+}
+
+.p-headSec {
+	padding-top: var(--header-height);
+}
+
+@media (any-hover: hover) {
+
+.c-accordion__btn:hover {
+	opacity: 0.7;
+}
+
+.c-panel:hover {
+	opacity: 0.7;
+}
+
 }
 
 @media (hover: hover) {
@@ -725,6 +1093,14 @@ a {
 
 }
 
+@media screen and (min-width: 768px) {
+
+.p-drawer-menu {
+	display: none;
+}
+
+}
+
 @media (max-width: 1100px) {
 
 html {
@@ -748,6 +1124,27 @@ html {
 	font-size: 16px;
 }
 
+.c-accordion__btn {
+	font-size: calc(17 / 16 * 1rem);
+	padding: calc(15 / 16 * 1rem) calc(45 / 16 * 1rem) calc(15 / 16 * 1rem) calc(20 / 16 * 1rem);
+}
+
+.c-accordion__btn::before,
+.c-accordion__btn::after {
+	right: calc(20 / 16 * 1rem);
+	width: calc(20 / 16 * 1rem);
+}
+
+.c-accordion__body {
+	padding-left: calc(20 / 16 * 1rem);
+	padding-right: calc(20 / 16 * 1rem);
+}
+
+.c-accordion__body[aria-hidden=false] {
+	padding-bottom: calc(15 / 16 * 1rem);
+	padding-top: calc(15 / 16 * 1rem);
+}
+
 .c-hamburger {
 	-webkit-text-decoration: none;
 	-webkit-appearance: none;
@@ -764,6 +1161,45 @@ html {
 	text-decoration: none;
 	transition: background 0.3s ease;
 	width: calc(50 / 16 * 1rem);
+}
+
+.c-modalMedical__inner {
+	padding: calc(40 / 16 * 1rem) calc(20 / 16 * 1rem);
+}
+
+.c-modalMedical__head {
+	margin-top: calc(30 / 16 * 1rem);
+}
+
+.c-modalMedical__title {
+	font-size: calc(18 / 16 * 1rem);
+}
+
+.c-modalMedical__body {
+	margin-top: calc(30 / 16 * 1rem);
+}
+
+.c-panel {
+	min-height: calc(180 / 16 * 1rem);
+	padding: calc(20 / 16 * 1rem) calc(5 / 16 * 1rem);
+}
+
+.c-panel__img {
+	width: min(100px, 100%);
+}
+
+.c-panel__text {
+	padding-left: calc(10 / 16 * 1rem);
+	padding-right: calc(10 / 16 * 1rem);
+}
+
+.c-panel__text::before,
+.c-panel__text::after {
+	right: calc(2 / 16 * 1rem);
+}
+
+.c-panel__text {
+	font-size: calc(13 / 16 * 1rem);
 }
 
 .pagination .nav-links {
@@ -801,7 +1237,12 @@ html {
 	position: fixed;
 	right: 0;
 	top: calc(80 / 16 * 1rem);
-	transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
+	transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-clip-path 0.3s ease;
+	transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease;
+	transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
+	transition: opacity var(--duration), visibility var(--duration), -webkit-clip-path var(--duration);
+	transition: opacity var(--duration), visibility var(--duration), clip-path var(--duration);
+	transition: opacity var(--duration), visibility var(--duration), clip-path var(--duration), -webkit-clip-path var(--duration);
 	visibility: hidden;
 	width: 100%;
 	z-index: 102;
@@ -899,6 +1340,23 @@ html {
 	z-index: var(--hamburger);
 }
 
+.p-panels {
+	gap: calc(20 / 16 * 1rem);
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.p-qa {
+	padding-top: calc(50 / 16 * 1rem);
+}
+
+.p-qa__body {
+	margin-top: calc(60 / 16 * 1rem);
+}
+
+.p-qa__accordion:nth-child(n+2) {
+	margin-top: calc(15 / 16 * 1rem);
+}
+
 body:has(.c-hamburger.is_active) {
 	overflow: hidden;
 }
@@ -909,6 +1367,14 @@ body:has(.c-hamburger.is_active) {
 
 .u-hidden-sp {
 	display: none;
+}
+
+body:has(.c-hamburger.is_active) {
+	overflow: hidden;
+}
+
+.p-headSec {
+	padding-top: var(--header-height-sp);
 }
 
 }
@@ -925,6 +1391,30 @@ html {
 
 .p-header {
 	position: absolute;
+}
+
+}
+
+@keyframes fadeIn {
+
+from {
+	opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+
+}
+
+@keyframes fadeOut {
+
+from {
+	opacity: 1;
+}
+
+to {
+	opacity: 0;
 }
 
 }

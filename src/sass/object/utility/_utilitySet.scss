@@ -1,0 +1,46 @@
+@use 'global' as * ; 
+
+/* ドロワーメニュー展開時背景固定 */
+body:has(.c-hamburger.is_active){
+  @include mq(md) {
+    overflow: hidden;
+  }
+}
+// モーダル展開時背景固定
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+// モダール展開時背面コンテンツのスクロールバーの有無で開閉時に背面レイアウトのガタツキ防止
+body {
+  overflow-y: scroll; /* 常にスクロールバーを表示 */
+}
+.siteWrapper:has(dialog[open]) {
+  overflow-y: auto;
+  scrollbar-gutter: stable; /* スクロールバーのスペースを常に確保する */
+}
+//モーダル表示時のアニメーション設定
+dialog[open]{
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+}
+dialog:not([open]) {
+  animation-name: fadeOut;
+  animation-fill-mode: forwards;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+}
+
+.siteWrapper {
+  overflow-x: clip;
+}
+
+// ヘッダーの高さをページ上部に設定
+.p-headSec {
+  padding-top: var(--header-height);
+  @include mq(md) {
+    padding-top: var(--header-height-sp);
+  }
+}

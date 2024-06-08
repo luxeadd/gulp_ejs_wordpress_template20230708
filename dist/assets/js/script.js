@@ -39,9 +39,8 @@ for (var a = 0; a < drawerMenuItems.length - 1; a++) {
 // ----------------------
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
-    jsHamburger.classList.remove("is_active");
+    hamburger.classList.remove("is_active");
     spHeaderMenu.classList.remove("is_active");
-    screenUnLock();
   }
 });
 
@@ -265,6 +264,42 @@ tabs.forEach(function (tab, index) {
 
     // クリックされたタブの順番と同じタブターゲットにis-activeクラスを付与
     targets[index].classList.add('is-active');
+  });
+});
+
+// ----------------------
+// モーダル制御
+// ----------------------
+document.addEventListener("DOMContentLoaded", function () {
+  // ボタンのdata-modal-openと一致するモーダルを開く
+  var modalTriggers = document.querySelectorAll("[data-modal-open]");
+  modalTriggers.forEach(function (trigger) {
+    trigger.addEventListener("click", function () {
+      var modalId = trigger.getAttribute("data-modal-open");
+      var modal = document.getElementById(modalId);
+      if (modal) {
+        modal.showModal();
+      }
+    });
+  });
+  // モーダル内の閉じるボタンをクリックしたらモーダルを閉じる
+  var closeButtons = document.querySelectorAll("[data-modal-close]");
+  closeButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var modal = button.closest("dialog");
+      if (modal) {
+        modal.close();
+      }
+    });
+  });
+  // モーダル背景をクリックしたらモーダルを閉じる
+  var modalDialog = document.querySelectorAll(".js-modalDialog");
+  modalDialog.forEach(function (dialog) {
+    dialog.addEventListener("click", function (event) {
+      if (event.target.closest(".js-modalContainer") === null) {
+        dialog.close();
+      }
+    });
   });
 });
 

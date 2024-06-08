@@ -15,17 +15,23 @@
     overflow-y: scroll;
     z-index: var(--drawer);
     background: #ccc;
-    opacity: 0;
     visibility: hidden;
+    opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
+    // clip-path: inset(0 0 100% 0);
+    transition: opacity var(--duration), visibility var(--duration), clip-path var(--duration);
+  }
+
+  @include mq(mdOut) {
+    display: none;
   }
 }
-
-.p-drawer-menu[aria-hidden="false"] {
+.p-drawer-menu[aria-hidden="false"],
+.p-drawer-menu:popover-open {
   opacity: 1;
-  visibility: visible;
+  visibility: revert;
   pointer-events: auto;
+  // clip-path: inset(0 0 0 0);
 }
 
 .p-drawer-menu__items {

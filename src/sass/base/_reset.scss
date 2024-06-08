@@ -37,14 +37,16 @@ html {
 }
 
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  display: flex;
-  flex-direction: column;
   overflow-wrap: anywhere;
   word-break: normal;
   line-break: strict;
+}
+
+.siteWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
@@ -94,8 +96,38 @@ a {
   color: inherit;
 }
 
+button {
+  border: unset;
+  background-color: unset;
+  padding: unset;
+  color: unset;
+}
+
 :where(button, [type='button'], [type='reset'], [type='submit']) {
   touch-action: manipulation;
+}
+
+:where([popover]) {
+  width: unset;
+  height: unset;
+  padding: unset;
+  overflow: unset;
+  color: unset;
+  background-color: unset;
+  border: unset;
+}
+
+:where(dialog) {
+  inline-size: unset;
+  max-inline-size: unset;
+  block-size: unset;
+  max-block-size: unset;
+  padding: unset;
+  margin: unset;
+  color: unset;
+  background-color: unset;
+  border: unset;
+  overflow: unset;
 }
 
 // -------------------------------------
