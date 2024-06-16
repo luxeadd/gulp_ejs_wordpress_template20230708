@@ -13,7 +13,6 @@ export function drawer() {
     hamburger.setAttribute("aria-expanded", expanded);
     spHeaderMenu.setAttribute("aria-hidden", hidden);
     header.classList.toggle("is_active", !isOpen);
-    document.body.style.overflow = isOpen ? "" : "hidden";
   }
 
   hamburger.addEventListener("click", function () {

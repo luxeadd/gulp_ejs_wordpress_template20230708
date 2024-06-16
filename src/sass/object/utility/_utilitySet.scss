@@ -1,7 +1,7 @@
 @use 'global' as * ; 
 
 /* ドロワーメニュー展開時背景固定 */
-body:has(.c-hamburger.is_active){
+body:has(.c-hamburger[aria-expanded="true"]){
   @include mq(md) {
     overflow: hidden;
   }
