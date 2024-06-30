@@ -1378,7 +1378,7 @@ body:has(.c-hamburger.is_active) {
 	display: none;
 }
 
-body:has(.c-hamburger.is_active) {
+body:has(.c-hamburger[aria-expanded=true]) {
 	overflow: hidden;
 }
 
