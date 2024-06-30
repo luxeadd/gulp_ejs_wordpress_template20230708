@@ -13,7 +13,7 @@
     font-size: 16px;
 
     @include mq("md") {
-      font-size: vw(#{var(--innerValue)}, 16);
+      font-size: vw($innerValue, 16);
     }
 
     //inner~max-screen
@@ -27,7 +27,7 @@
     font-size: 16px;
 
     @media (max-width: $inner) {
-      font-size: clamp(10px, calc(vw(#{var(--innerValue)}, 16)), 16px);
+      font-size: clamp(10px, calc(vw($innerValue, 16)), 16px);
     }
 
     @include mq("md") {

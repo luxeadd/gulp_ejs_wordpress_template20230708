@@ -1,8 +1,8 @@
 @use "global" as *;
 
 :root {
-  --header-height: rem(100);
-  --header-height-sp: rem(80);
+  --header-height: #{rem(100)};
+  --header-height-sp: #{rem(80)};
 }
 
 .p-header {
@@ -28,7 +28,6 @@
   &.is_active {
     background: #ccc;
   }
-  
 }
 
 .p-header__inner {

@@ -1,6 +1,6 @@
 :root {
 	--innerValue: 1100;
-	--inner: 1100px;
+	--inner: var(--innerValue) * 1px;
 	--padding-pc: 25px;
 	--padding-sp: 20px;
 	--light: 300;
@@ -654,7 +654,7 @@ button {
 .l-inner {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: calc(1100px + 25px * 2);
+	max-width: calc(1100 * 1px + 25px * 2);
 	max-width: calc(var(--inner) + var(--padding-pc) * 2);
 	padding-left: 25px;
 	padding-left: var(--padding-pc);
@@ -907,15 +907,15 @@ button {
 }
 
 :root {
-	--header-height: rem(100);
-	--header-height-sp: rem(80);
+	--header-height: calc(100 / 16 * 1rem);
+	--header-height-sp: calc(80 / 16 * 1rem);
 }
 
 .p-header {
 	background: #fff;
 	background: var(--white);
 	display: flex;
-	height: rem(100);
+	height: calc(100 / 16 * 1rem);
 	height: var(--header-height);
 	left: 0;
 	position: fixed;
@@ -1033,7 +1033,7 @@ dialog:not([open]) {
 }
 
 .p-headSec {
-	padding-top: rem(100);
+	padding-top: calc(100 / 16 * 1rem);
 	padding-top: var(--header-height);
 }
 
@@ -1112,7 +1112,6 @@ dialog:not([open]) {
 
 html {
 	font-size: clamp(10px, 16 / 1100 * 100vw, 16px);
-	font-size: clamp(10px, 16 / var(--innerValue) * 100vw, 16px);
 }
 
 }
@@ -1243,8 +1242,8 @@ html {
 	pointer-events: none;
 	position: fixed;
 	right: 0;
-	top: rem(100);
-	top: var(--header-height);
+	top: calc(80 / 16 * 1rem);
+	top: var(--header-height-sp);
 	transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-clip-path 0.3s ease;
 	transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease;
 	transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
@@ -1326,7 +1325,7 @@ html {
 }
 
 .p-header {
-	height: rem(80);
+	height: calc(80 / 16 * 1rem);
 	height: var(--header-height-sp);
 }
 
@@ -1383,7 +1382,7 @@ body:has(.c-hamburger[aria-expanded=true]) {
 }
 
 .p-headSec {
-	padding-top: rem(80);
+	padding-top: calc(80 / 16 * 1rem);
 	padding-top: var(--header-height-sp);
 }
 

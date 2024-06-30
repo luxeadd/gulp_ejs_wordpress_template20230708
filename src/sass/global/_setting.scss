@@ -1,12 +1,12 @@
 @use "sass:math";
 
-// インナー幅設定
+// インナー幅設定 rem()関数用・メディアクエリ用
 $innerValue: 1100;
 $inner: calc($innerValue * 1px);
 
 :root {
-  --innerValue: #{$innerValue};
-  --inner: #{$inner};
+  --innerValue: 1100;
+  --inner: var(--innerValue) * 1px;
   --padding-pc: 25px;
   --padding-sp: 20px;
   // フォントウェイト

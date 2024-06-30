@@ -88,12 +88,13 @@ const baseMeta = {
 <%- include(baseMeta.path + 'common/_head', { baseMeta:baseMeta } ) %>
 
 <body id="top">
-  <main>
+  <div class="siteWrapper">
     <!-- ヘッダー -->
     <%- include(baseMeta.path + 'common/_header', { baseMeta:baseMeta } ) %>
+    <main>
 
-    <div class="p-mv">
-      <%- include(baseMeta.path +'common/_picture', 
+      <div class="p-mv">
+        <%- include(baseMeta.path +'common/_picture', 
       { 
         baseMeta:baseMeta, 
         img : 'common/image1', 
@@ -110,10 +111,10 @@ const baseMeta = {
         lazy : 'true', 
       }
     ) %>
-    </div>
+      </div>
 
-    <div id="sec1" class="p-mv">
-      <%- include(baseMeta.path +'common/_picture', 
+      <div id="sec1" class="p-mv">
+        <%- include(baseMeta.path +'common/_picture', 
       { 
         baseMeta:baseMeta, 
         img : 'common/image1', 
@@ -130,52 +131,53 @@ const baseMeta = {
         lazy : 'true', 
       }
     ) %>
-    </div>
+      </div>
 
-    <div class="l-inner">
-      <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-      <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-      <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-      <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
+      <div class="l-inner">
+        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
+        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
+        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
+        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
 
-      <ul hidden="until-found">
-        <li>リストです</li>
-        <li>リストです</li>
-        <li>リストです</li>
-        <li>リストです</li>
-      </ul>
-
-
-      <div style="margin-top: 100px;"></div>
+        <ul hidden="until-found">
+          <li>リストです</li>
+          <li>リストです</li>
+          <li>リストです</li>
+          <li>リストです</li>
+        </ul>
 
 
-      <div class="p-panels">
-        <% for (var medicalList of medicalLists) {%>
-        <%- include(baseMeta.path + 'parts/_c-panel', { baseMeta:baseMeta, mod:medicalList.mod, open:medicalList.open, img:medicalList.img, text:medicalList.text}) %>
+        <div style="margin-top: 100px;"></div>
+
+
+        <div class="p-panels">
+          <% for (var medicalList of medicalLists) {%>
+          <%- include(baseMeta.path + 'parts/_c-panel', { baseMeta:baseMeta, mod:medicalList.mod, open:medicalList.open, img:medicalList.img, text:medicalList.text}) %>
+          <% } %>
+        </div>
+        <% for (var medicalModalList of medicalModalLists) {%>
+        <%- include(baseMeta.path + 'parts/_c-modalMedical',{ baseMeta:baseMeta, target:medicalModalList.target, modalTitle:medicalModalList.modalTitle, modalDesc:medicalModalList.modalDesc, img:medicalModalList.img, title:medicalModalList.title , text:medicalModalList.text  }) %>
         <% } %>
+
+
+        <div style="margin-top: 100px;"></div>
+
+
+        <% for (var qaList of qaLists) {%>
+        <div class="p-qa__accordion">
+          <%- include(baseMeta.path + 'parts/_c-accordion',{ baseMeta:baseMeta, question:qaList.question, answer:qaList.answer }) %>
+        </div>
+        <% } %>
+
+
       </div>
-      <% for (var medicalModalList of medicalModalLists) {%>
-      <%- include(baseMeta.path + 'parts/_c-modalMedical',{ baseMeta:baseMeta, target:medicalModalList.target, modalTitle:medicalModalList.modalTitle, modalDesc:medicalModalList.modalDesc, img:medicalModalList.img, title:medicalModalList.title , text:medicalModalList.text  }) %>
-      <% } %>
 
-
-      <div style="margin-top: 100px;"></div>
-
-
-      <% for (var qaList of qaLists) {%>
-      <div class="p-qa__accordion">
-        <%- include(baseMeta.path + 'parts/_c-accordion',{ baseMeta:baseMeta, question:qaList.question, answer:qaList.answer }) %>
-      </div>
-      <% } %>
-
-
-    </div>
-
-  </main>
-  <!-- ページトップボタン -->
-  <%- include(baseMeta.path +'parts/_c-page-top') %>
-  <!-- フッター -->
-  <%- include(baseMeta.path +'common/_footer') %>
+    </main>
+    <!-- ページトップボタン -->
+    <%- include(baseMeta.path +'parts/_c-page-top') %>
+    <!-- フッター -->
+    <%- include(baseMeta.path +'common/_footer') %>
+  </div>
 </body>
 
 </html>
