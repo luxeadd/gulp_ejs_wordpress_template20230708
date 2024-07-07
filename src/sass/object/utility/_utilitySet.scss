@@ -1,5 +1,20 @@
 @use 'global' as * ; 
 
+//768px以上非表示
+.sp_only {
+  display: none;
+  @include mq("md") {
+    display: block;
+  }
+}
+
+//モバイル非表示
+.pc_only {
+  @include mq("md") {
+    display: none;
+  }
+}
+
 /* ドロワーメニュー展開時背景固定 */
 body:has(.c-hamburger[aria-expanded="true"]){
   @include mq(md) {
@@ -38,9 +53,19 @@ dialog:not([open]) {
 }
 
 // ヘッダーの高さをページ上部に設定
-.p-headSec {
+.siteWrapper {
   padding-top: var(--header-height);
   @include mq(md) {
     padding-top: var(--header-height-sp);
+  }
+}
+
+.hover {
+  transition: opacity var(--duration);
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }

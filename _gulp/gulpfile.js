@@ -119,23 +119,32 @@ const cssSass = () => {
       // ベンダープレフィックスを自動付与
       .pipe(
         postcss([
-          postcssPresetEnv(),
+          postcssPresetEnv({
+            stage: 3, // 候補（Stage 3）以上のCSS機能を使用
+            features: {
+              "nesting-rules": true, // ネストルールを有効にする
+              "custom-media-queries": true, // カスタムメディアクエリを有効にする
+              // "container-queries": true, // コンテナクエリを有効にする
+            },
+          }),
           autoprefixer({
             grid: true,
           }),
         ])
       )
-      // CSSプロパティをアルファベット順にソートし、未来のCSS構文を使用可能に
+      // CSSプロパティのソート、CSS構文のバージョン管理
       .pipe(
         postcss([
           cssdeclsort({
-            order: "alphabetical",
+            // order: "alphabetical",//アルファベット順
+            order: "smacss", // SMACSS順
+            // order: "concentric-css", // Concentric CSS順
           }),
         ]),
-        postcssPresetEnv({ browsers: "last 2 versions" })
+        postcssPresetEnv({ browsers: "last 2 versions" }) // 対象ブラウザの指定
       )
       // メディアクエリを統合
-      .pipe(mmq())
+      // .pipe(mmq())
       // コンパイル済みのCSSファイルを出力先に保存
       // ソースマップを書き出し
       .pipe(sourcemaps.write("./"))
@@ -147,6 +156,9 @@ const cssSass = () => {
           onLast: true,
         })
       )
+      .on("end", () => {
+        console.log("CSS compilation and media query grouping completed.");
+      })
   );
 };
 
@@ -246,7 +258,7 @@ const ejs = require("gulp-ejs");
 const htmlBeautify = require("gulp-html-beautify");
 const srcEjsDir = "../src/ejs";
 const ejsCompile = (done) => {
-  src([srcEjsDir + "/*.ejs", "!" + srcEjsDir + "/_*.ejs"])
+  src([srcEjsDir + "/**/[^_]*.ejs"]) // ファイル名がアンダースコアで始まらないすべての.ejsファイルを対象
     .pipe(
       plumber({
         errorHandler: notify.onError(function (error) {
