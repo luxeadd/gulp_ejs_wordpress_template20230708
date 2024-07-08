@@ -27,6 +27,8 @@ const zip = require("gulp-zip");
 // --------------------------------------------------------------------
 //[必須！！！！！] コンパイル設定 ejs or wp
 const compilingSet = "ejs";
+// gulp zip時のファイル名
+const zipName = "project";
 // WordPressの場合は開発環境とプロジェクト名とテーマ名を指定
 const wpDevSet = ""; //local or mamp or docker
 const wpProject = "test3";
@@ -326,7 +328,7 @@ const archive = () => {
   const yymmdd = year + month + day;
 
   return src(destPath.all)
-    .pipe(zip(`${yymmdd}_name.zip`))
+    .pipe(zip(`${zipName}_${yymmdd}.zip`))
     .pipe(dest("../zip-files/"));
 };
 
