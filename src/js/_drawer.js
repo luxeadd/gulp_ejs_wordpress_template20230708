@@ -21,12 +21,12 @@ export function drawer() {
   });
 
   drawerMenuItems.forEach((item) => {
-    item.addEventListener("click", () => toggleDrawer());
+    item.addEventListener("click", () => toggleDrawer(true));
   });
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      toggleDrawer();
+      toggleDrawer(true);
     }
   });
 
