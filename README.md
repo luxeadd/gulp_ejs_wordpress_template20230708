@@ -21,7 +21,7 @@
 　　∟ utility ・・・共通SCSS  
 　　∟ object ・・・FLOCSS対応  
 　　∟ style.scss ・・・インクルード用SCSS  
-　　∟ WordPress ・・・WordPress関係ファイル  
+  ∟ WordPress ・・・WordPress関係ファイル  
 （使用する場合はgulpfile.jsを　　WordPress用に編集すること）  
 
 ∟ _gulp ・・・gulpファイル格納用  
@@ -145,35 +145,44 @@ WordPress
 
 ## docker起動について
 
-- docker-compose.yml：更新箇所を変更 ※コンテナNo、ポートNo、Volume
-- wp-install.sh：WordPressローカルポートをdocker-compose.yml記載のポートに合わせる
-- wp-install.sh：ログイン情報更新
-- gulp.jsのWordPressローカルポートをdocker-compose.yml記載のポートに合わせる
+1. docker-compose.yml：更新箇所を変更 ※コンテナNo、ポートNo、Volume
+2. wp-install.sh：WordPressローカルポートをdocker-compose.yml記載のポートに合わせる
+3. wp-install.sh：ログイン情報更新
+4. gulp.jsのWordPressローカルポートをdocker-compose.yml記載のポートに合わせる
 
-- docker起動 
+5. docker起動 
 ```
 docker-compose up -d
 ```
 
-- インストールしたWordPressに入る 
+6. インストールしたWordPressに入る 
 ```
-docker exec -it WordPressコンテナネーム /bin/bash
-docker exec -it wordpress_09 /bin/bash
-```
+docker exec -it wordpressName /bin/bash
+```  
+※wordpressNameの部分はdocker-compose.yml記載のWordPressコンテナ名を入力
 
-- /tmp/wp-install.shのコマンドを許可
+7. /tmp/wp-install.shのコマンドを許可
 ```
 chmod +x /tmp/wp-install.sh
 ```
 
-- wp-install.sh記載のコマンドを実行
+8. wp-install.sh記載のコマンドを実行してWordPressをインストール
 ```
 /tmp/wp-install.sh
 ```
 
-- 設定を変えた場合はdocker再起動
+### その他docker操作
+- docker-compose.ymlなどの設定を変えた場合はdocker再起動
 ```
 docker-compose up -d --build
+```
+- dockerスタート  
+```
+docker-compose start
+```
+- dockerストップ
+```
+docker-compose stop
 ```
 - データベースのエクスポート
 ```
